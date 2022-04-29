@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Genre Detail</title>
+
+
+</head>
+
+<style>
+    table, th, td {
+          border: 0px solid black;
+          vertical-align: top;
+        }
+
+    .image_top {
+        background: none;
+        border: 0px solid black;
+        position: absolute;
+        left:0.0%;       top:0.0%;
+        width: 100.0%;   height: 37.2%;
+        padding-left: 0px;
+    }
+
+    .top-left {
+        position: absolute;
+        top: 0%;
+        left: 20px;
+    }
+
+    .bottom-left {
+        position: absolute;
+        top: 85.0%;
+        left: 20px;
+    }
+
+    .top-right {
+        position: absolute;
+         left: 75.0%;     top: 7.0%;
+         width: 24.0%;
+         color: darkblue;
+    }
+
+    .poem_genre_list {
+        background: none;
+        overflow: auto;
+        border: 0px solid black;
+        position: absolute;
+        left:0.0%;       top:39.0%;
+        width: 100.0%;   height: 61.0%;
+        padding-left: 20px;
+        list-style: none;
+        /* Chrom  Safari  */          /* FireFox  */
+        -webkit-column-width: 45.0%; -moz-column-width: 45.0%; column-width: 45.0%;
+        -webkit-column-count: 2;     -moz-column-count: 2;     column-count: 2;
+        -webkit-column-gap: 5%;      -moz-column-gap: 5%;      column-gap: 5%;
+        -webkit-column-rule: 1px solid #ccc;   -moz-column-rule: 1px solid #ccc;  column-rule: 1px solid #ccc;
+    }
+
+
+</style>
+
+<body>
+
+    {% extends "poems/base_generic.html" %}
+    {% load static %}
+
+    {% block content %}
+<div class="image_top">
+
+<img src="{% static 'images/genre_from_Bakla.png' %}" alt="Bakla Genre"
+         style="width:100%;height:100.0%;"/>
+
+    <div class="top-left"> <h2>{{ genre.name }}</h2> </div>
+    <div class="bottom-left"> <p style = "color:white">
+            {{name_genre_text}} {{ genre.poem_set.all.count }} </p></div>
+    <div class="top-right"> <h5> <b> {{ name_library }} </b> </h5> </div>
+
+</div>  <!-- image_top -->
+
+    <div class="poem_genre_list">
+{% for poem in genre.poem_set.all %}
+
+   <a href="{{ poem.get_absolute_url }}"> <b> {{ poem.tytle }} </b></a> &nbsp;&nbsp;{{poem.poem_lang}} <br>
+
+{% endfor %}
+     </div> <!-- poem_genre_list -->
+
+
+
+
+{% endblock %}
+
+
+
+</body>
+</html>

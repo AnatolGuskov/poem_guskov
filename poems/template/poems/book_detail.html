@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Book Detail</title>
+
+    <style>
+    table, th, td {
+          border:0px solid black;
+          vertical-align: top;
+          height: 15%
+          }
+
+    p1 {
+          line-height: 0.5; font-size: 12px
+    }
+
+    .book_detail {
+        background: rgb(207, 195, 87);
+        position: absolute;    left:0px;       top:00px;
+                               width: 66%;   height:50.0%;
+        padding-left: 10px; padding-right: 20px; padding-bottom: 20px;
+        color:rgb(56, 45, 56); font-size: 10; text-decoration: greenyellow;
+    }
+
+    .book_image {
+    background: rgb(207, 195, 187);
+    position: absolute;    left:68%;       top:00px;
+                           width: 32.0%;   height:50.0%;
+    padding-left: 0px; padding-right: 0px;
+    color:rgb(56, 45, 56); font-size: 20; text-decoration: greenyellow;
+    }
+
+    .book_poems {
+        overflow: auto;
+        background: rgb(207, 195, 10);
+        position: absolute;    left:0px;      top:52.0%;
+                               width: 100%;     height: 48.0%;
+        padding-left: 20px; padding-right: 20px; padding-top: 10px;
+        color:rgb(56, 45, 56); font-size: 20; text-decoration: greenyellow;
+    }
+
+    </style>
+
+    {% extends "poems/base_generic.html" %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles_poem.css' %}">
+
+</head>
+
+<body>
+
+{% block content %}
+  <div class="book_detail">  <!-- Блок деталей книги -->
+
+      <h3 style="line-height: 0.5">{{ book.title }}</h3>
+<table style="width: 100%; height:70%">
+<tr>
+      <td style="width: 20.0%"><p1><strong>Public date:</strong></p1> </td>
+      <td><p1>{% if book.public_date %} {{ book.public_date }} {% endif %}</p1> </td>
+</tr>
+<tr>
+      <td> <p1><strong>Author:</strong></p1> </td>
+      <td><p1>{{ book.author }}</p1> </td>
+</tr>
+<tr>
+      <td ><p1><strong>Summary:</strong><p> </td>
+      <td><p1> {{ book.summary }}</p1>  </td>
+</tr>
+<tr>
+      <td><p1><strong>Pages:</strong><p> </td>
+      <td><p1>{{ book.pages }}</p1> </td>
+</tr>
+<tr>
+      <td><p1><strong>Poems:</strong></p1> </td>
+      <td><p1><b>{{ book.poem_set.all.count }}</b> from {{ book.poems_count }}</p1>  </td>
+</tr>
+</table>
+
+  </div>  <!-- Конец Блок деталей книги -->
+
+  <div class="book_image">  <!-- Блок обложки книги -->
+{% if book.id == 1 %}
+     <img src="{% static 'images/2019_djakuju.jpg' %}" alt="2019 djakuju"
+          style="width:100%;height:100%;"/>
+{% endif %}
+{% if book.id == 2 %}
+     <img src="{% static 'images/2020_bereg.jpg' %}" alt="2020 bereg"
+          style="width:100%;height:100%;"/>
+{% endif %}
+{% if book.id == 3 %}
+     <img src="{% static 'images/2021_teni.jpg' %}" alt="2021 teni"
+          style="width:100%;height:100%;"/>
+{% endif %}
+{% if book.id == 4 %}
+     <img src="{% static 'images/2022_vino.jpg' %}" alt="2022 vino"
+          style="width:100%;height:100%;"/>
+{% endif %}
+{% if book.id == 5 %}
+     <img src="{% static 'images/2022_war.jpg' %}" alt="2022 war"
+          style="width:100%;height:100%;"/>
+{% endif %}
+  </div>  <!-- Конец Блок обложки книги -->
+
+  <div class="book_poems"> <!-- Блок перечня стихотворений книги -->
+{% for poem in book.poem_set.all %}
+   <b>*</b><a href="{{ poem.get_absolute_url }}"> <b> {{ poem.tytle }} </b></a>
+      <b> &nbsp;&nbsp;&nbsp;&nbsp; </b>
+{% endfor %}
+   <br> <br>
+  </div> <!-- Конец Блок перечня стихотворений книги -->
+
+{% endblock %}
+
+</body>
+</html>

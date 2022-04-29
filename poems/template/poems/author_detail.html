@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Author Detail</title>
+
+    <style>
+
+    .poem_list {
+        background: rgb(100, 240, 200);
+        overflow: auto;
+        border: 0px solid black;
+        position: absolute;
+        left:  0.0%;        top: 12.0%;
+        width: 100.0%;      height: 87.0%;
+        padding-left: 30px; padding-top: 0px;
+        list-style: none;
+    }
+
+
+    </style>
+
+    {% extends "poems/author_list.html" %}
+    {% load static %}
+
+</head>
+
+<body>
+
+
+{% block poem_author %}
+        <h4 style = "color:white">
+            {{ author.last_name }} {{ author.first_name }}
+            {% if author.city %} ({{ author.city }}) {% endif %} </h4>
+
+
+<div class="poem_list">
+    <br>
+    {% for poem in author.poem_set.all %}
+   <a href="{{ poem.get_absolute_url }}"> <b> {{ poem.tytle }} </b></a> &nbsp;&nbsp;{{ poem.poem_lang }} <br>
+    {% endfor %}
+</div>  <!-- poem_list  -->
+{% endblock %}
+
+
+
+</body>
+</html>

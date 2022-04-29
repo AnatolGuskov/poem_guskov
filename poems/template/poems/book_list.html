@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book List</title>
+
+
+    <style>
+        table, th, td {
+          border: 0px solid black;
+          vertical-align: top;
+        }
+
+    .image_top {
+        background: none;
+        border: 0px solid black;
+        position: absolute;
+        left:0.0%;       top:0.0%;
+        width: 100.0%;   height: 37.2%;
+        padding-left: 0px;
+    }
+
+    .top-left {
+            position: absolute;
+            top: 0%;
+            left: 20px;
+            color: darkblue;
+        }
+
+    .bottom-left {
+        position: absolute;
+        top: 85.0%;
+        left: 85px;
+        }
+
+    .top-right {
+        position: absolute;
+         left: 75.0%;     top: 7.0%;
+         width: 24.0%;
+         color: darkblue;
+    }
+
+    .book_list {
+        background: none;
+        overflow: auto;
+        border: 0px solid black;
+        position: absolute;
+        left:0.0%;       top:39.0%;
+        width: 100.0%;   height: 61.0%;
+        padding-left: 20px;
+        list-style: none;
+    }
+
+    .book_image {
+    background: rgb(207, 195, 87);
+        position: absolute;    left:;       top:;
+                           width: 80.0%px;   height:55px;
+    }
+
+    a:link {
+          color: red;
+          background-color: transparent;
+          text-decoration: none;
+    }
+
+        a:hover {
+          color: red;
+          background-color: transparent;
+          text-decoration: underline;
+        }
+
+    </style>
+
+<!--    <meta charset="UTF-8">-->
+</head>
+
+<body>
+    {% extends "poems/base_generic.html" %}
+    {% load static %}
+
+{% block content %}
+<div class="image_top">
+    <img class="book_image" src="{% static 'images/books_from Bakla.png' %}" alt="Bakla morning"
+         style="width:100.0%;height:100.0%;"/>
+    <div class = "top-left">   <h1>
+        {{name_tytle}}</h1> </div>
+    <div class = "bottom-left">   <p style = "color:white">
+        {{name_text}} {{ book_list.all.count }} </p> </div>
+    <div class="top-right"> <h5> <b> {{ name_library }} </b> </h5> </div>
+
+</div>  <!--  image_top  -->
+
+<div class="book_list">
+
+    {% if book_list %}
+      {% for book in book_list %}
+
+<table style="width: 98.0%">
+<!--<br>-->
+<tr>
+      <td style="width: 11.0%; height: 25.5%">
+            {% if book.id == 1 %}
+                 <img src="{% static 'images/2019_djakuju.jpg' %}" alt="2019 djakuju"
+                     style="width:75.0%;height:90%;"/>
+            {% endif %}
+            {% if book.id == 2 %}
+                 <img src="{% static 'images/2020_bereg.jpg' %}" alt="2020 bereg"
+                      style="width:75.0%;height:90%;"/>
+            {% endif %}
+            {% if book.id == 3 %}
+                 <img src="{% static 'images/2021_teni.jpg' %}" alt="2021 teni"
+                      style="width:75.0%;height:90%;"/>
+            {% endif %}
+            {% if book.id == 4 %}
+                 <img src="{% static 'images/2022_vino.jpg' %}" alt="2022 vino"
+                      style="width:75.0%;height:90%;"/>
+            {% endif %}
+            {% if book.id == 5 %}
+                 <img src="{% static 'images/2022_war.jpg' %}" alt="2022 war"
+                      style="width:75.0%;height:90%;"/>
+            {% endif %}
+      </td>
+
+      <td style="width: 45.0%">
+         <a href="{{ book.get_absolute_url }}"> <b> {{ book.title }} </b></a>  </td>
+
+      <td style="width: 42.0%; align=: right"> <b>{{ book.poem_set.all.count }}</b>
+          {{name_from}} {{ book.poems_count }}&nbsp;{{name_poem}} </td>
+
+</tr>
+</table>
+    <tr></tr>
+
+      {% endfor %}
+
+    {% else %}
+      <p>There are no books in the library.</p>
+    {% endif %}
+
+</div>  <!-- book_list -->
+
+{% endblock %}
+
+
+</head>
+</body>
+
+
+</html>
+
+            {% if book.id == 2 %}
+                 <img src="{% static 'images/2020_bereg.jpg' %}" alt="2020 bereg" style="width:250px;height:300px;"/>
+            {% endif %}
+            {% if book.id == 3 %}
+                 <img src="{% static 'images/2021_teni.jpg' %}" alt="2021 teni" style="width:250px;height:300px;"/>
+            {% endif %}
+            {% if book.id == 4 %}
+                 <img src="{% static 'images/2022_vino.jpg' %}" alt="2022 vino" style="width:250px;height:300px;"/>
+            {% endif %}
+            {% if book.id == 5 %}
+                 <img src="{% static 'images/2022_war.jpg' %}" alt="2022 war" style="width:250px;height:300px;"/>
+            {% endif %}

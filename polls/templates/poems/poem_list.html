@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Poem List</title>
+
+    <style>
+        table, th, td {
+          border: 0px solid black;
+          vertical-align: top;
+        }
+
+    .italic {
+           font-style: italic;
+    }
+
+    .image_top {
+        background: none;
+        border: 0px solid black;
+        position: absolute;
+        left:0.0%;       top:0.0%;
+        width: 100.0%;   height: 37.2%;
+        padding-left: 0px;
+    }
+
+    .poem_list {
+        background: rgb(230, 240, 240);
+        overflow: auto; /* Добавляем полосы прокрутки */
+        position: absolute;
+        left:0.0%;       top:39.0%;
+        width: 100%;   height: 61.0%;
+    padding-left: 5px; padding-right: 5px;
+    color:black;
+    }
+
+    .top-left {
+        position: absolute;
+        top: 0px;
+        left: 10px;
+        color: darkblue;
+    }
+
+    .top-right {
+        position: absolute;
+        left: 75.0%;     top: 7.0%;
+        width: 24.0%;
+        color: darkblue;
+    }
+
+    .bottom-left {
+        position: absolute;
+        top: 85.0%;
+        left: 10px;
+        color: white
+    }
+
+    .bottom-right {
+        position: absolute;
+        top: 74.0%;
+        left: 75%;
+        color: blue
+    }
+
+    a.button {
+          display: inline-block;
+          background: #2000f3;
+          color: #fff;
+          padding: 1px;
+          border-radius: 3px;
+          text-decoration: none;
+          font-family: Tahoma;
+          font-size: 11px;
+          line-height: 1.4;
+          font-weight: 80;
+    }
+
+
+    </style>
+
+    {% extends "poems/base_generic.html" %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles_poem.css' %}">
+
+</head>
+<body>
+
+{% block content %}
+<div class = "image_top">
+
+    <img src="{% static 'images/poems_from_Tepe.png' %}" alt="From Tepe" style="width:100%;height:100%"/>
+    <div class = "top-left"><h1> {{ name_tytle_poem }} </h1> </div>
+    <div class="bottom-left"> <p>{{ name_text_poem }}: {{ len }} </p> </div>
+    <div class="top-right"> <h5> <b> {{ name_library }} </b> </h5> </div>
+    <div class="bottom-right">
+        <a class="button" style="color: DarkGray" href="{% url 'poems:poem_tytle_ukr' %}">
+            &nbsp;Вірші українською&nbsp;</a> <br>
+        <a class="button" style="color: DarkGray"href="{% url 'poems:poem_tytle_rus' %}">
+            &nbsp;Вірші російською&nbsp;&nbsp;&nbsp;</a>
+    </div>
+
+
+</div> <!-- image_top  -->
+
+    {% if poem_list %}
+
+<div class = "poem_list">
+      {% for poem in poem_list %}
+
+<table style="width: 100.0%">
+<tr>
+     <td style="width:7px"> <li> </li> </td>
+     <td style="width:35.0%"><a href="{{ poem.get_absolute_url }}">  <b> {{ poem.tytle }} </b> </a> </td>
+     <td style="width:8.0%; align:right; font-style: italic"> {{ poem.poem_lang }} </td>
+     <td style="align:left; font-style: italic"> {{ poem.headline }}&nbsp;... </td>
+</tr>
+</table>
+      {% endfor %}
+</div>     <!-- poem_list -->
+
+    {% else %}
+<div class="bottom-left">
+      <p>There are no poems in the library.</p>
+    {% endif %}
+</div>
+
+{% endblock %}
+
+
+</body>
+</html>

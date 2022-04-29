@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+    table, th, td {
+      border:0px solid black;
+    }
+
+    #top-left {
+    position: absolute;
+    top: 0px;
+    left: 40px;
+    }
+
+    </style>
+    <meta charset="UTF-8">
+    <title>Genre List</title>
+
+</head>
+<body>
+
+{% extends "poems/base_generic.html" %}
+{% load static %}
+
+{% block content %}
+
+<img src="{% static 'images/genre_from_Chufut.png' %}" alt="From Chufut"
+     style="width:700px;height:210px;"/>
+
+    <h1>Genre List</h1>
+
+    {% if genre_list_poem %}
+    <ul>
+
+      <p>There {% if genre_num == 1 %} is {{ gehre_num }} genre:
+               {% else %} are {{ genre_num }} genres: {% endif %}</p>
+
+      {% for genre in genre_list_poem %}
+<table style="width: 140px">
+<tr>
+          <td style="width:125px"><a href="{{ genre.get_absolute_url }}">  <b> {{ genre.name }} </b> </a> </td>
+          <td align="right">  {% if genre.poem_num > 0 %} {{ genre.poem_num }} {% endif %} </td>
+</tr>
+</table>
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>There are no genres in the library.</p>
+    {% endif %}
+{% endblock %}
+
+</body>
+</html>
+

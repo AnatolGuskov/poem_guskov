@@ -1,0 +1,150 @@
+<!--POLLS TEMPLATE POEMS-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    {% block title %}<title>Title</title>{% endblock %}
+
+    <meta charset="utf-8">
+    <!-- Responsibilaty -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Сompiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Сompiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <style>
+
+    .side_left {
+        background: yellow;
+        border: 0px solid black;
+        position: absolute;
+        left:1.1%;       top:0%;
+        width: 14.36%;   height: 98.0%;
+        padding-left: 0;
+        list-style: none;
+    }
+    .side_right {
+        background: yellow;
+        border: 0px solid black;
+        position: absolute;
+        left:84.0%;       top:0px;
+        width: 14.36%;   height: 98.0%;
+        padding-left: 0;
+        list-style: none;
+    }
+    .content {
+        background: rgb(210, 250, 240);
+        border: 0px solid black;
+        position: absolute;
+        left:16.50%;       top:0px;
+        width: 66.49%;   height: 98.0%;
+        padding-left: 20;
+        list-style: none;
+    }
+    .menu {
+        background: none;
+        border: 0px solid black;
+        position: absolute;
+        left:8.0%;       top:4.0%;
+        width: 80%;   height:;
+        padding-left: 0;
+        list-style: none;
+    }
+    .menu_ukr {
+        background: none;
+        border: 0px solid black;
+        position: absolute;
+        left:8.0%;       top:4.0%;
+        width: 80%;   height:;
+        padding-left: 0;
+        list-style: none;
+    }
+    .copy_right {
+        border: 0px solid black;
+        position: absolute;
+        left:8.0%;       top:93.0%;
+        width:;   height:;
+        line-height: 1.5;
+    }
+
+    </style>
+
+    <!-- Добавление дополнительного статического CSS файла -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles_poem.css' %}">
+
+</head>
+
+
+<body>
+<!--<div class="container-fluid">-->
+      {% block sidebar %}
+<div class="side_left">
+
+      <img src="{% static 'images/panel_left.png' %}" alt="Chatyrdag_left"
+                 style="width:100%;height:100%;"/>
+
+      <ul class="menu_ukr">
+
+          <li><a href="{% url 'poems:index' %}"><strong>Домашня</strong></a></li>
+          <li><a href="{% url 'poems:books_ukr' %}"><strong>Всі Книги</strong></a></li>
+          <li><a href="{% url 'poems:genres_ukr' %}"><strong>Всі Жанри</strong></a></li>
+          <li><a href="{% url 'poems:poem_tytle' %}"><strong>Вірші Назви</strong></a></li>
+          <li><a href="{% url 'poems:poem_string' %}"><strong>Вірші Строки</strong></a></li>
+          <li><a href="{% url 'poems:authors_ukr' %}"><strong>Всі Автори</strong></a></li>
+
+    </ul>  <!-- menu_ukr -->
+
+      <div class="copy_right">
+
+          <p style="line-height: 50%; font-size: 12px; color: white">
+              <b> &#169 Anatoliy Guskov </b> </p>
+          <p style="line-height: 50%; font-size: 12px; color: white">
+              <b> Version: April 2022 </b> </p>
+      </div>  <!-- copy_right  -->
+
+
+</div> <!-- side_left -->
+
+<div class="side_right">
+    <img src="{% static 'images/panel_right.png' %}" alt="Chatyrdag_right"
+                 style="width:100%;height:100%;"/>
+
+      <ul class="menu">
+              <li><a href="{% url 'poems:index_eng' %}"><strong>Home</strong></a></li>
+              <li><a href="{% url 'poems:books' %}"><strong>All Books</strong></a></li>
+              <li><a href="{% url 'poems:genres' %}"><strong>All Genres</strong></a></li>
+              <li><a href="{% url 'poems:poem_tytle' %}"><strong>Poem Tytles</strong></a></li>
+              <li><a href="{% url 'poems:poem_string' %}"><strong>Poem Strings</strong></a></li>
+              <li><a href="{% url 'poems:authors' %}"><strong>All Authors</strong></a></li>
+      </ul>  <!-- menu -->
+
+
+    <div class="copy_right">
+
+          <p style="line-height: 50%; font-size: 12px; color: white">
+              <b> dkgb@i.ua </b> </p>
+          <p style="line-height: 50%; font-size: 12px; color: white">
+              <b> Viber: 097 760 4885 </b> </p>
+      </div>  <!-- copy_right  -->
+</div> <!-- side_right -->
+
+ {% endblock %} <!-- sidebar -->
+
+      <div class="content">
+      {% block content %}
+
+      {% endblock %}
+      </div>  <!-- content -->
+
+
+<!--</div>  &lt;!&ndash; container-fluid &ndash;&gt;-->
+
+</body>
+
+</html>

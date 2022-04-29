@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        table, th, td {
+          border:0px solid black;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>Genre Poems List</title>
+
+</head>
+<body>
+
+{% extends "poems/base_generic.html" %}
+{% load static %}
+
+{% block content %}
+<img src="{% static 'images/genre_from_Chufut.png' %}" alt="From Chufut" style="width:700px;height:210px;"/>
+
+    <h1>Genre: {{ genre_name }} </h1>
+
+<!--    {% if genre_poems %}-->
+<!--    <ul>-->
+
+<!--      <p>There {% if len == 1 %} is {{ len }} genre:-->
+<!--               {% else %} are {{ len }} genres: {% endif %}</p>-->
+
+<!--      {% for genre in genre_list_poem %}-->
+<!--<table style="width: 140px">-->
+<!--<tr>-->
+<!--{% url 'poems:genre_poems' %}-->
+<!--          <td style="width:125px"><a href="{% url 'poems:genre_poems' %}">  <b> {{ genre.name }} </b> </a> </td>-->
+<!--          <td align="right">  {% if genre.poem_num > 0 %} {{ genre.poem_num }} {% endif %} </td>-->
+<!--</tr>-->
+<!--</table>-->
+<!--      {% endfor %}-->
+
+<!--    </ul>-->
+<!--    {% else %}-->
+<!--      <p>There are no genres in the library.</p>-->
+<!--    {% endif %}-->
+{% endblock %}
+
+</body>
+</html>
+

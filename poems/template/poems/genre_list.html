@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+    table, th, td {
+          border:0px solid black;
+     }
+    .genre_list {
+        background: none;
+        overflow: auto;
+        border: 0px solid black;
+        position: absolute;
+        left:0.0%;       top:40.0%;
+        width: 100.0%;   height: 61.0%;
+        padding-left: 0px;
+        list-style: none;
+        -webkit-column-width: 50.0%;  /* Chrom  Safari  */
+        -moz-column-width: 50.0%;     /* FireFox  */
+        column-width: 50.0%;
+        -webkit-column-count: 2; -moz-column-count: 2;  column-count: 2;
+        -webkit-column-gap: 0%;  -moz-column-gap: 0%;   column-gap: 0%;
+        -webkit-column-rule: 1px solid #ccc; -moz-column-rule: 1px solid #ccc; column-rule: 1px solid #ccc;
+    }
+
+    .image_top {
+        background: none;
+        border: 0px solid black;
+        position: absolute;
+        left:0.0%;       top:0.0%;
+        width: 100.0%;   height: 37.2%;
+        padding-left: 0px;
+    }
+
+    .top-left {
+        position: absolute;
+        top: 0px;
+        left: 40px;
+        color: white
+    }
+
+    .top-right {
+        position: absolute;
+         left: 75.0%;     top: 7.0%;
+         width: 24.0%;
+         color: white;
+    }
+
+    .bottom-left {
+        position: absolute;
+        top: 85.0%;
+        left: 40px;
+        color: white
+    }
+
+    </style>
+    <meta charset="UTF-8">
+    <title>Genre List</title>
+
+</head>
+<body>
+
+{% extends "poems/base_generic.html" %}
+{% load static %}
+
+{% block content %}
+<div class="image_top">
+
+    <img src="{% static 'images/genre_from_Chufut.png' %}" alt="From Chufut"
+         style="width:100.0%;height:100.0%;"/>
+    <div class="top-left">   <h1> {{ name_tytle }} </h1>   </div>
+    <div class="bottom-left"> <b> {{ name_text }} {{ genre_list.all.count }} </b> </div>
+    <div class="top-right"> <h5> <b> {{ name_library }} </b> </h5> </div>
+
+</div>   <!-- image_top -->
+
+    {% if genre_list %}
+<div class="genre_list">
+    <ul>
+      {% for genre in genre_list %}
+<table style="width: 200px">
+<tr>
+          <td style="width:120px"><a href="{{ genre.get_absolute_url }}">  <b> {{ genre.name }} </b> </a> </td>
+
+          <td style="width:55px; align: right">  {% if genre.poem_set.all.count > 0 %}
+                              &nbsp;{{ name_poem }} {% endif %} </td>
+          <td style="width:25px; align: right">  {% if genre.poem_set.all.count > 0 %}
+                              {{ genre.poem_set.all.count }} {% endif %} </td>
+</tr>
+</table>
+      {% endfor %}
+    </ul>
+</div>  <!-- genre_list  -->
+    {% else %}
+      <p>There are no genres in the library.</p>
+    {% endif %}
+{% endblock %}
+
+</body>
+</html>
+

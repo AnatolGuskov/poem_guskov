@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Poem Detail</title>
+
+    <style>
+    .poem_tytle {
+        background: rgb(207, 195, 87);
+        position: absolute;
+        left:0px;       top:00px;
+        width: 65%;     height: 100%;
+        padding-left: 10px; padding-right: 10px;
+    }
+    .poem_text {
+        overflow: auto;
+        background: rgb(207, 195, 87);
+           left:0px;       top:8.0%;
+           width: 100%;    height: 86.0%;
+        padding-left: 0px; padding-right: 0px;
+    }
+    .poem_detail {
+        background: rgb(207, 195, 10);
+        position: absolute;
+        left:66%;       top:00px;
+        width: 34%;     height:;
+        padding-left: 10px; padding-right: 0px;
+        padding-top: 15px;
+    }
+
+    p1 {
+          line-height: 0.5; font-size: 12px
+    }
+
+    pre1 {
+        overflow: none;
+        background-color: none;
+        font-size: 12px
+    }
+
+    </style>
+    {% extends "poems/base_generic.html" %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles_poem.css' %}">
+
+</head>
+<body>
+
+{% block content %}
+<div class="poem_tytle">
+  <h3>{{ poem.tytle }}</h3>
+<div class = "poem_text"> <!-- Блок текста стихотворения  -->
+   <pre>{{ poem.content }}</pre>
+</div> <!-- poem_text -->
+</div> <!-- poem_tytle -->
+
+<div class = "poem_detail"> <!-- Блок информации о стихотворении  -->
+  <p1 style="font-size: 10">{{ poem.date }}</p1>
+
+  <h5> <a href="{% url 'poems:author-detail' poem.author.pk %}">{{ book.author }}
+      <b>{{ poem.author.first_name}}&nbsp;{{poem.author.last_name}}</b> </a> </h5>
+
+  <pre1>{{ poem.summary }}</pre1>
+    <br> <br>
+  <h5>{% if poem.genre.all.count > 1 %} Genres of the poem:
+      {% else %} Genre of the poem: {% endif %}  </h5>
+  {% for genre in poem.genre.all %}
+  <a href="{{ genre.get_absolute_url }}"> <b> {{ genre.name }} </b></a>
+      <br>
+  {% endfor %}
+
+  <h5>{% if poem.book.all.count > 1 %} Books of the poem:
+      {% else %} Book of the poem: {% endif %}  </h5>
+  {% for book in poem.book.all %}
+  <a href="{{ book.get_absolute_url }}"> <b> {{ book.title }} </b></a>
+      <br>
+  {% endfor %}
+      <br>
+</div>
+
+
+{% endblock %}
+
+
+
+</body>
+</html>

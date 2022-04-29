@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Author List</title>
+
+
+    <style>
+        table, th, td {
+          border: 0px solid black;
+          vertical-align: top;
+        }
+
+    .image_top {
+        background: none;
+        border: 0px solid black;
+        position: absolute;
+        left:0.0%;       top:0.0%;
+        width: 100.0%;   height: 37.2%;
+        padding-left: 0px;
+    }
+
+    .top-left {
+            position: absolute;
+            top: 0%;
+            left: 20px;
+            color: darkblue;
+        }
+
+    .bottom-left {
+        position: absolute;
+        top: 85.0%;
+        left: 20px;
+        }
+
+    .top-right {
+        position: absolute;
+         left: 75.0%;     top: 7.0%;
+         width: 24.0%;
+         color: darkblue;
+    }
+
+    .bottom-right {
+        position: absolute;
+        top: 85.0%;
+        left: 360px;
+        color: white;
+        }
+
+    .author_list {
+        background: rgb(180, 240, 200);
+        overflow: auto;
+        border: 0px solid black;
+        position: absolute;
+        left:0.0%;       top:38.0%;
+        width: 55.0%;   height: 62.0%;
+        padding-left: 20px; padding-top: 10px;
+        list-style: none;
+    }
+
+    .poem_author_list {
+        background: none;
+        border: 0px solid black;
+        position: absolute;
+        left:  56.0%;        top: 29.0%;
+        width: 44.0%;     height: 71.0%;
+        padding-left: 10px; padding-top: 0px;
+        list-style: none;
+    }
+
+<!--    a:link {-->
+<!--          color: red;-->
+<!--          background-color: transparent;-->
+<!--          text-decoration: none;-->
+<!--    }-->
+
+<!--    a:hover {-->
+<!--          color: red;-->
+<!--          background-color: transparent;-->
+<!--          text-decoration: underline;-->
+<!--        }-->
+
+    </style>
+
+<!--    <meta charset="UTF-8">-->
+</head>
+
+<body>
+    {% extends "poems/base_generic.html" %}
+    {% load static %}
+
+{% block content %}
+<div class="image_top">
+    <img class="book_image" src="{% static 'images/authors_from Bakla.png' %}" alt="Bakla Chatyrdag"
+         style="width:100.0%;height:100.0%;"/>
+    <div class = "top-left">   <h1>{{name_tytle}}</h1> </div>
+    <div class = "bottom-left">   <p style = "color:white">
+        {{name_text}} {{ author_list.all.count }} </p> </div>
+    <div class="top-right"> <h5> <b> {{ name_library }} </b> </h5> </div>
+    <div class = "bottom-right"> <p style = "color:white">
+        {{ name_poem_list }} </p> </div>
+</div>  <!--  image_top  -->
+
+<div class="author_list">
+
+    {% if author_list %}
+      {% for author in author_list %}
+         {% if author.last_name != "укладач Гуськов" %}
+
+<table style="width: 300px">
+<!--<br>-->
+<tr>
+     <td style="width: 180px"> <a href="{{ author.get_absolute_url }}">
+         <b>{{ author.last_name }} {{ author.first_name }}</b></a>  </td>
+
+     <td style="width: 100px; font-style: italic">
+         {% if author.city %} {{ author.city }} {% endif %} </td>
+
+     <td style="text-align: right"> <b>{{ author.poem_set.all.count }}</b> </td>
+
+</tr>
+</table>
+
+        {% endif %}
+      {% endfor %}
+    {% else %}
+      <p>There are no authors in the library.</p>
+    {% endif %}
+
+</div>  <!-- author_list -->
+
+    <div class="poem_author_list">
+
+    {% block poem_author %}
+
+    {% endblock %}  <!-- poem_autor -->
+
+    </div>
+
+{% endblock %} <!-- content -->
+
+
+</head>
+</body>
+
+
+</html>
+
+            {% if book.id == 2 %}
+                 <img src="{% static 'images/2020_bereg.jpg' %}" alt="2020 bereg" style="width:250px;height:300px;"/>
+            {% endif %}
+            {% if book.id == 3 %}
+                 <img src="{% static 'images/2021_teni.jpg' %}" alt="2021 teni" style="width:250px;height:300px;"/>
+            {% endif %}
+            {% if book.id == 4 %}
+                 <img src="{% static 'images/2022_vino.jpg' %}" alt="2022 vino" style="width:250px;height:300px;"/>
+            {% endif %}
+            {% if book.id == 5 %}
+                 <img src="{% static 'images/2022_war.jpg' %}" alt="2022 war" style="width:250px;height:300px;"/>
+            {% endif %}
