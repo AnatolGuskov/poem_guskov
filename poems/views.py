@@ -15,7 +15,7 @@ from . models import Author, Genre, Book, Poem
 def index_eng(request):
     # Функция отображения для домашней страницы сайта.
     # Генерация "количеств" некоторых главных объектов
-    num_genres = Genre.objects.all().count()
+    # num_genres = Genre.objects.all().count()
     num_poems  = Poem.objects.all().count()
     num_books  = Book.objects.all().count()
     num_authors = Author.objects.all().count()
