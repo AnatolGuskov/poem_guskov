@@ -9,34 +9,36 @@ from . import views
 
 app_name = 'poems'
 
-urlpatterns = [
-    path(r'^/eng$', views.index_eng, name='index_eng'),
-    path(r'', views.index, name='index'),
+#POEM_GUSKOV
 
-    path(r'^authors/$', views.author_list, name='authors'),
-    path(r'^authors/ukr$', views.author_list_ukr, name='authors_ukr'),
-    path(r'^authors/(?P<pk>\d+)$', views.AuthorDetailView.as_view(), name='author-detail'),
+urlpatterns = [
+    path('/eng', views.index_eng, name='index_eng'),
+    path('', views.index, name='index'),
+
+    path('authors/', views.author_list, name='authors'),
+    path('authors/ukr', views.author_list_ukr, name='authors_ukr'),
+    path('authors/<pk>', views.AuthorDetailView.as_view(), name='author-detail'),
 
     # path(r'^genres/$', views.GenreListView.as_view(), name='genres'),
-    path(r'^genres/$', views.genre_list, name='genres'),
-    path(r'^genres/ukr$', views.genre_list_ukr, name='genres_ukr'),
+    path('genres/', views.genre_list, name='genres'),
+    path('genres/ukr', views.genre_list_ukr, name='genres_ukr'),
     # path(r'^genres/(?P<pk>\d+)$', views.GenreDetailView.as_view(), name='genre-detail'),
-    path(r'^genres/(?P<pk>\d+)$', views.genre_detail, name='genre-detail'),
+    path('genres/<pk>', views.genre_detail, name='genre-detail'),
 
-    path(r'^books/$', views.book_list, name='books'),
-    path(r'^books/ukr$', views.book_list_ukr, name='books_ukr'),
-    path(r'^book/(?P<pk>\d+)$', views.BookDetailView.as_view(), name='book-detail'),
+    path('books/', views.book_list, name='books'),
+    path('books/ukr', views.book_list_ukr, name='books_ukr'),
+    path('book/<pk>', views.BookDetailView.as_view(), name='book-detail'),
 
     # path(r'^poems/$', views.PoemListView.as_view(), name='poem'),
-    path(r'^poems/$', views.poem_list, name='poem_tytle'),
-    path(r'^poems/ukr$', views.poem_list_ukr, name='poem_tytle_ukr'),
-    path(r'^poems/rus$', views.poem_list_rus, name='poem_tytle_rus'),
+    path('poems/', views.poem_list, name='poem_tytle'),
+    path('poems/ukr', views.poem_list_ukr, name='poem_tytle_ukr'),
+    path('poems/rus', views.poem_list_rus, name='poem_tytle_rus'),
 
-    path(r'^poems/str/$', views.poem_list_string, name='poem_string'),
-    path(r'^poems/str/ukr$', views.poem_list_string_ukr, name='poem_string_ukr'),
-    path(r'^poems/str/rus$', views.poem_list_string_rus, name='poem_string_rus'),
+    path('poems/str/', views.poem_list_string, name='poem_string'),
+    path('poems/str/ukr', views.poem_list_string_ukr, name='poem_string_ukr'),
+    path('poems/str/rus', views.poem_list_string_rus, name='poem_string_rus'),
 
-    path(r'poems/<pk>', views.PoemDetailView.as_view(), name='poem-detail'),
+    path('poems/<pk>', views.PoemDetailView.as_view(), name='poem-detail'),
 
 ]
 
