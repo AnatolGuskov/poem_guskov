@@ -12,7 +12,7 @@ app_name = 'poems'
 #POEM_GUSKOV
 
 urlpatterns = [
-    path('/eng', views.index_eng, name='index_eng'),
+    path('eng', views.index_eng, name='index_eng'),
     path('', views.index, name='index'),
 
     path('authors/', views.author_list, name='authors'),
