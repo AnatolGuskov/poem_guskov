@@ -47,7 +47,7 @@ urlpatterns += [
     path('', RedirectView.as_view(url='/poems/', permanent=True)), #from M-django
 ]
 
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) #from M-django
+# urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) #from M-django
 
 
 

@@ -62,6 +62,14 @@ MIDDLEWARE = [
 
 ]
 
+# Simplified static file serving.
+# https://warehouse.python.org/project/whitenoise/
+#! STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/4.0/howto/static-files/
+STATIC_URL = 'static/'
+
 ROOT_URLCONF = 'mytestsite.urls'
 
 TEMPLATES = [
@@ -124,18 +132,13 @@ DATETIME_INPUT_FORMATS = (('%d-%m-%Y %H:%i'),)
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'Europe/Kiev'
-
 USE_I18N = True
-
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-# STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -167,10 +170,7 @@ DATABASES['default'].update(db_from_env)
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # The URL to use when referring to static files (where they will be served from)
-STATIC_URL = '/static/'
+#! STATIC_URL = '/static/'
 
-# Simplified static file serving.
-# https://warehouse.python.org/project/whitenoise/
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 #POEM_GUSKOV
