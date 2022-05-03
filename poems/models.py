@@ -70,7 +70,7 @@ class Book(models.Model):
     # language = models.ForeignKey(Language, on_delete=models.SET_NULL, null=True)
     pages = models.IntegerField(default=0)
     poems_count = models.IntegerField(default=0)
-    image = models.ImageField(null=True, blank = True, upload_to='images/')
+    # image = models.ImageField(null=True, blank = True, upload_to='images/')
 
     def __str__(self):
         return str(str.upper(self.title))
