@@ -24,7 +24,7 @@
         position: absolute;
         left:66%;       top:00px;
         width: 34%;     height:;
-        padding-left: 10px; padding-right: 0px;
+        padding-left: 10px; padding-right: 5px;
         padding-top: 15px;
     }
 
@@ -50,17 +50,21 @@
 <div class="poem_tytle">
   <h3>{{ poem.tytle }}</h3>
 <div class = "poem_text"> <!-- Блок текста стихотворения  -->
-   <pre>{{ poem.content }}</pre>
+   <pre style="font-family:Georgia,serif; font-size: 14px">{{ poem.content }}</pre>
 </div> <!-- poem_text -->
 </div> <!-- poem_tytle -->
 
 <div class = "poem_detail"> <!-- Блок информации о стихотворении  -->
   <p1 style="font-size: 10">{{ poem.date }}</p1>
 
-  <h5> <a href="{% url 'poems:author-detail' poem.author.pk %}">{{ book.author }}
+  {% if poem.author.last_name == "Гуськов" %}
+  <h5> <b>{{poem.author.first_name}}&nbsp;{{poem.author.last_name}}</b> </h5>
+  {% else %}
+  <h5> <a href="{% url 'poems:author-detail' poem.author.pk %}">
       <b>{{poem.author.first_name}}&nbsp;{{poem.author.last_name}}</b> </a> </h5>
+  {% endif %}
 
-  <pre1>{{ poem.summary }}</pre1>
+  <p  style="white-space: pre-line; font-size: 12px" >{{ poem.summary }}</p>
     <br> <br>
   <h5>{% if poem.genre.all.count > 1 %} Genres of the poem:
       {% else %} Genre of the poem: {% endif %}  </h5>

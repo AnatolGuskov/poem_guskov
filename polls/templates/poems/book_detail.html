@@ -62,7 +62,8 @@
 </tr>
 <tr>
       <td> <p1><strong>Author:</strong></p1> </td>
-      <td><p1>{{ book.author }}</p1> </td>
+      <td><p1>{{ book.author }} {% if book.author_status %}-
+              {{ book.author_status }} {% endif %} </p1> </td>
 </tr>
 <tr>
       <td ><p1><strong>Summary:</strong><p> </td>

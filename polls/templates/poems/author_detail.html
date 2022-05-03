@@ -7,12 +7,23 @@
 
     <style>
 
+    .author_name {
+        border: 0px solid red;
+        display: inline-block;
+        background: none;
+        position: absolute;
+        left:  0.0%;        top: 0.0%;
+        width: 100.0%;      height:17.0%;
+        padding-left: 30px; padding-top: 0px;
+        vertical-align: bottom;
+    }
+
     .poem_list {
         background: rgb(100, 240, 200);
         overflow: auto;
         border: 0px solid black;
         position: absolute;
-        left:  0.0%;        top: 12.0%;
+        left:  0.0%;        top: 17.0%;
         width: 100.0%;      height: 87.0%;
         padding-left: 30px; padding-top: 0px;
         list-style: none;
@@ -30,10 +41,13 @@
 
 
 {% block poem_author %}
-        <h4 style = "color:white">
-            {{ author.last_name }} {{ author.first_name }}
-            {% if author.city %} ({{ author.city }}) {% endif %} </h4>
 
+<div class="author_name">
+        <h4 style = "color:white">
+            {{ author.last_name }} {{ author.first_name }} </h4>
+        <h5 style = "color:white">
+            {% if author.city %} ({{ author.city }}) {% endif %} </h5>
+</div>
 
 <div class="poem_list">
     <br>
@@ -41,8 +55,8 @@
    <a href="{{ poem.get_absolute_url }}"> <b> {{ poem.tytle }} </b></a> &nbsp;&nbsp;{{ poem.poem_lang }} <br>
     {% endfor %}
 </div>  <!-- poem_list  -->
-{% endblock %}
 
+{% endblock %} <!--poem_author -->
 
 
 </body>

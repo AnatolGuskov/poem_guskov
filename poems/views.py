@@ -73,8 +73,8 @@ def index(request):
 # =============== AUTHORS Пользовательское представление ================
 def author_list(request):
     author_list = Author.objects.all()
-
-    name_tytle = "Author List"
+    num_authors = Author.objects.count() - 1
+    name_tytle = "Other Author"
     name_text = "There are authors:"
     name_library = "Poetry library by Anatoliy Guskov"
     name_poem_list = "Poem List of Author"
@@ -82,7 +82,7 @@ def author_list(request):
     return render(
         request,
         'poems/author_list.html',
-        context={'author_list': author_list,
+        context={'author_list': author_list, 'num_authors': num_authors,
                  'name_tytle': name_tytle, 'name_text': name_text,
                  'name_library': name_library, 'name_poem_list': name_poem_list }
     )
@@ -90,8 +90,8 @@ def author_list(request):
 # =======================================
 def author_list_ukr(request):
     author_list = Author.objects.all()
-
-    name_tytle = "Перелік Авторів"
+    num_authors = Author.objects.count() - 1
+    name_tytle = "Інші Автори"
     name_text = "Усього авторів:"
     name_library = "Бібліотека поезій Анатолія Гуськова"
     name_poem_list = "Перелік віршів автора"
@@ -99,7 +99,7 @@ def author_list_ukr(request):
     return render(
         request,
         'poems/author_list.html',
-        context={'author_list': author_list,
+        context={'author_list': author_list, 'num_authors': num_authors,
                  'name_tytle': name_tytle, 'name_text': name_text,
                  'name_library': name_library, 'name_poem_list': name_poem_list }
     )
@@ -198,7 +198,7 @@ def book_list_ukr(request):
 
 # =============== POEMS LIST TYTLE ================
 def poem_list(request):
-    poem_list = Poem.objects.all()
+    poem_list = Poem.objects.all().filter( author_id = 1)
 
     name_tytle_poem = "Перелік Віршів"
     name_text_poem = "Усьго віршів"
@@ -300,17 +300,17 @@ def poem_list_string_rus(request):
         )
 
 
-# ===============================
-def genre_poems(request):
-    genre_name = Genre.objects.get(pk = id)
-    poems_list = Poem.objects.all().filter(genre = genre_name)
-
-    return render(
-        request, 'poems/genre_poems.html',
-        context={'poems_list' : poems_list, 'poems_num' : len(poems_list),
-                 'genre_name' : genre_name,
-                 }
-    )
+# # ===============================
+# def genre_poems(request):
+#     genre_name = Genre.objects.get(pk = id)
+#     poems_list = Poem.objects.all().filter(genre = genre_name)
+#
+#     return render(
+#         request, 'poems/genre_poems.html',
+#         context={'poems_list' : poems_list, 'poems_num' : len(poems_list),
+#                  'genre_name' : genre_name,
+#                  }
+#     )
 
 # ===============================
 

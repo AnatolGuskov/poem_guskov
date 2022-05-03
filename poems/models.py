@@ -63,14 +63,14 @@ class Book(models.Model):
     public_date = models.DateField(null = True , blank = True)
     name_book = models.CharField(null=True, max_length=20)
     title = models.CharField(max_length=200)
-    # title_2 = models.CharField(default=' ', max_length=200)
     author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True)
+    author_status = models.CharField(null=True, blank = True, max_length=30)
     summary = models.TextField(null=True, blank = True, max_length=1000, help_text="Enter a brief description")
     isbn = models.CharField(default='ISBN', max_length=17, help_text='17 Character <a href="https://www.isbn-international.org/content/what-isbn">ISBN number</a>')
     # language = models.ForeignKey(Language, on_delete=models.SET_NULL, null=True)
     pages = models.IntegerField(default=0)
     poems_count = models.IntegerField(default=0)
-    # image = models.ImageField(default="", upload_to='images/')
+    image = models.ImageField(null=True, blank = True, upload_to='images/')
 
     def __str__(self):
         return str(str.upper(self.title))

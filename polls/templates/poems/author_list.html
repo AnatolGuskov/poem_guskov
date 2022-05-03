@@ -62,8 +62,8 @@
         background: none;
         border: 0px solid black;
         position: absolute;
-        left:  56.0%;        top: 29.0%;
-        width: 44.0%;     height: 71.0%;
+        left:  56.0%;        top: 25.0%;
+        width: 44.0%;     height: 75.0%;
         padding-left: 10px; padding-top: 0px;
         list-style: none;
     }
@@ -95,7 +95,7 @@
          style="width:100.0%;height:100.0%;"/>
     <div class = "top-left">   <h1>{{name_tytle}}</h1> </div>
     <div class = "bottom-left">   <p style = "color:white">
-        {{name_text}} {{ author_list.all.count }} </p> </div>
+        {{name_text}} {{ num_authors }} </p> </div>
     <div class="top-right"> <h5> <b> {{ name_library }} </b> </h5> </div>
     <div class = "bottom-right"> <p style = "color:white">
         {{ name_poem_list }} </p> </div>
@@ -105,7 +105,7 @@
 
     {% if author_list %}
       {% for author in author_list %}
-         {% if author.last_name != "укладач Гуськов" %}
+         {% if author.last_name != "Гуськов" %}
 
 <table style="width: 300px">
 <!--<br>-->
@@ -129,13 +129,13 @@
 
 </div>  <!-- author_list -->
 
-    <div class="poem_author_list">
+<div class="poem_author_list">
 
     {% block poem_author %}
 
-    {% endblock %}  <!-- poem_autor -->
+    {% endblock %}  <!-- poem_author -->
 
-    </div>
+</div>
 
 {% endblock %} <!-- content -->
 
