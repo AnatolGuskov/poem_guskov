@@ -14,7 +14,7 @@ admin.site.register(Book, BookAdmin)
 
 
 class PoemAdmin(admin.ModelAdmin):
-    list_display = ('date', 'title', 'author')
+    list_display = ('date', 'tytle', 'author')
 admin.site.register(Poem, PoemAdmin)
 
 

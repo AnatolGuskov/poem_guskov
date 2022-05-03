@@ -22,7 +22,7 @@ def index_eng(request):
     num_authors = Author.objects.all().count()
     # Number of visits to this view, as counted in the session variable.
     num_visits = request.session.get('num_visits', 0)
-    request.session['num_visits'] = num_visits - 1
+    request.session['num_visits'] = num_visits + 1
 
     name_tytle = "Poetry library by Anatolij Guskov"
     name_text = "The poetry library has the following record counts:"
