@@ -89,7 +89,7 @@
 
     <img src="{% static 'images/poems_from_Tepe.png' %}" alt="From Tepe" style="width:100%;height:100%"/>
     <div class = "top-left"><h1> {{ name_tytle_poem }} </h1> </div>
-    <div class="bottom-left"> <p>{{ name_text_poem }}: {{ len }} </p> </div>
+    <div class="bottom-left"> <p>{{ name_num }}: {{ num }} </p> </div>
     <div class="top-right"> <h5> <b> {{ name_library }} </b> </h5> </div>
     <div class="bottom-right">
         <a class="button" style="color: DarkGray" href="{% url 'poems:poem_string_ukr' %}">
@@ -100,11 +100,10 @@
 
 </div> <!-- image_top  -->
 
-
-    {% if poem_list_str %}
-
 <div class = "poem_list">
-      {% for poem in poem_list_str %}
+    {% if poem_list_guskov %}  <!-- GUSKOV  -->
+     <h5 style="color: darkblue;"> {{ name_num_poems }}: {{ num_guskov }} </h5>
+    {% for poem in poem_list_guskov %}
 
 <table style="width: 100.0%">
 <tr>
@@ -117,13 +116,33 @@
 </tr>
 </table>
       {% endfor %}
-</div>     <!-- poem_list -->
+      {% endif %}
 
+      {% if poem_list_authors %}  <!-- ANOTHER  -->
+      <h5 style="color: darkblue;"> {{ name_num_poems_authors }}: {{ num_authors }} </h5>
+      {% for poem in poem_list_authors %}
+
+    <table style="width: 100.0%">
+<tr>
+     <td style="width:6px"> <li> </li> </td>
+     <td style="width:61.0%; color: blue; font-style: italic">
+         <a href="{{ poem.get_absolute_url }}"> <b>{{ poem.headline }}&nbsp;...</b> </a></td>
+     <td style="width:8.0%; align:right; font-style: italic"> {{ poem.poem_lang }} </td>
+     <td style="align:left"> {{ poem.tytle }} </td>
+
+</tr>
+    </table>
+      {% endfor %}
+      {% endif %}
+
+    {% if poem_list_authors or poem_list %}
     {% else %}
 <div class="bottom-left">
       <p>There are no poems in the library.</p>
     {% endif %}
-</div>
+
+</div>     <!-- poem_list -->
+
 
 {% endblock %}
 

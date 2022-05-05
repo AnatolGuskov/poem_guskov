@@ -22,7 +22,7 @@ class Language(models.Model):
 class Author(models.Model):
     class Meta:
         ordering = ["last_name"]
-    author = models.CharField(default="Гуськов", max_length=25)
+    # author = models.CharField(default="Гуськов", max_length=25)
     first_name = models.CharField(null=True, blank = True, max_length=25)
     middl_name = models.CharField(null=True, blank = True, max_length=25)
     last_name = models.CharField(max_length=45)
@@ -85,7 +85,7 @@ class Poem(models.Model):
         ordering = ["tytle"]
     date = models.DateField(null = True, blank = True, )
     author = models.ForeignKey(Author, on_delete=models.SET_NULL,
-                               default = "Анатолій Гуськов", null = True, blank=True)
+                               null = True, blank=True)
     tytle = models.CharField(default=" ", max_length=100)
     poem_lang = models.CharField(default="укр.", max_length=4)
     headline = models.CharField(max_length=200)

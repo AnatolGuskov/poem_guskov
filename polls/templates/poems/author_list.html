@@ -42,9 +42,9 @@
 
     .bottom-right {
         position: absolute;
-        top: 85.0%;
-        left: 360px;
-        color: white;
+        top: 108.0%;
+        left:56.0%;
+        color: black;
         }
 
     .author_list {
@@ -68,17 +68,6 @@
         list-style: none;
     }
 
-<!--    a:link {-->
-<!--          color: red;-->
-<!--          background-color: transparent;-->
-<!--          text-decoration: none;-->
-<!--    }-->
-
-<!--    a:hover {-->
-<!--          color: red;-->
-<!--          background-color: transparent;-->
-<!--          text-decoration: underline;-->
-<!--        }-->
 
     </style>
 
@@ -95,9 +84,9 @@
          style="width:100.0%;height:100.0%;"/>
     <div class = "top-left">   <h1>{{name_tytle}}</h1> </div>
     <div class = "bottom-left">   <p style = "color:white">
-        {{name_text}} {{ num_authors }} </p> </div>
+        {{name_authors}} {{ num_authors }} &nbsp;&nbsp;&nbsp; {{ name_poems }} {{ num_poems }}</p> </div>
     <div class="top-right"> <h5> <b> {{ name_library }} </b> </h5> </div>
-    <div class = "bottom-right"> <p style = "color:white">
+    <div class = "bottom-right"> <p style = "color:darkblue; font-size: 12px; font-style: italic">
         {{ name_poem_list }} </p> </div>
 </div>  <!--  image_top  -->
 
@@ -105,7 +94,7 @@
 
     {% if author_list %}
       {% for author in author_list %}
-         {% if author.last_name != "Гуськов" %}
+        {% if author.last_name != 'Гуськов' %}
 
 <table style="width: 300px">
 <!--<br>-->
@@ -121,7 +110,7 @@
 </tr>
 </table>
 
-        {% endif %}
+         {% endif %}
       {% endfor %}
     {% else %}
       <p>There are no authors in the library.</p>

@@ -12,7 +12,7 @@
         position: absolute;
         left:0.0%;       top:40.0%x;
         width: 100.0%;   height: 98.0%;
-        padding-left: 20px;
+        padding-left: 10px;
         list-style: none;
     }
 
@@ -39,26 +39,31 @@
 
   <p>{{name_text}}</p>
 
-<table style="width: 140px">
+<table style="width: 35.0%">
 
 <tr>
-   <td style="width:110px"> <li><strong>{{name_book}}:</strong></li> </td>
+   <td style="width:85.0%"> <li><strong>{{name_book}}:</strong></li> </td>
    <td align="right"> {{ num_books }} </td>
 </tr>
 
 <tr>
-    <td style="width:110px"> <li><strong>{{name_genre}}:</strong></li> </td>
+    <td style="width:150px"> <li><strong>{{name_genre}}:</strong></li> </td>
     <td align="right"> {{ num_genres }} </td>
 </tr>
 
 <tr>
-    <td style="width:110px"> <li><strong>{{name_poem}}:</strong></li> </td>
-    <td align="right"> {{ num_poems }} </td>
+    <td style="width:150px"> <li><strong>{{name_authors}}:</strong></li> </td>
+    <td align="right"> {{ num_authors }} </td>
 </tr>
 
 <tr>
-    <td style="width:110px"> <li><strong>{{name_author}}:</strong></li> </td>
-    <td align="right"> {{ num_authors }} </td>
+    <td style="width:150px"> <li><strong>{{name_poems_guskov}}:</strong></li> </td>
+    <td align="right"> {{ num_poems_guskov }} </td>
+</tr>
+
+<tr>
+    <td style="width:150px"> <li><strong>{{name_poems_authors}}:</strong></li> </td>
+    <td align="right"> {{ num_poems_authors }} </td>
 </tr>
 
 </table>

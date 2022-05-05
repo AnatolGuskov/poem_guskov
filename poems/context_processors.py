@@ -3,7 +3,7 @@ from . models import Author, Genre, Book, Poem
 
 
 def author (request):
-    name_tytle = "Перелік Авторів"
+    name_tytle = "Інші Автори"
     name_text = "Усього авторів:"
     # name_library = "Бібліотека поезій Анатолія Гуськова"
     # name_poem_list = "Перелік віршів автора"

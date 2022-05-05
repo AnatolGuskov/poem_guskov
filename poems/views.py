@@ -7,6 +7,7 @@ from django.template import loader
 from django.http import HttpResponse
 from django.http import Http404
 from django.views import generic
+from django.db.models import Q
 
 from . models import Author, Genre, Book, Poem
 # D:\\web\\dj\\mytestsite\\poems\\
@@ -17,9 +18,11 @@ def index_eng(request):
     # Генерация "количеств" некоторых главных объектов
 
     num_genres = Genre.objects.all().count()
-    num_poems  = Poem.objects.all().count()
-    num_books  = Book.objects.all().count()
-    num_authors = Author.objects.all().count()
+    num_books = Book.objects.all().count()
+    num_poems_guskov = Poem.objects.all().filter(author=1).count()
+    num_authors = Author.objects.all().count() - 1
+    num_poems_authors = Poem.objects.all().count() - num_poems_guskov
+
     # Number of visits to this view, as counted in the session variable.
     num_visits = request.session.get('num_visits', 0)
     request.session['num_visits'] = num_visits + 1
@@ -28,17 +31,20 @@ def index_eng(request):
     name_text = "The poetry library has the following record counts:"
     name_book = "Books"
     name_genre = "Genres"
-    name_poem = "Poems"
-    name_author = "Authors"
+    name_poems_guskov = "Poems by A. Guskov"
+    name_authors = "Another Authors"
+    name_poems_authors = "Poems by Another Authors"
     # Отрисовка HTML-шаблона index.html с данными
     # внутри переменной контекста context
     return render(
         request, 'poems/index.html',
-        context={'num_genres': num_genres, 'num_poems': num_poems, 'num_authors': num_authors,
+        context={'num_genres': num_genres,
+                 'num_poems_guskov': num_poems_guskov,
+                 'num_poems_authors': num_poems_authors, 'num_authors': num_authors,
                  'num_books': num_books, 'num_visits': num_visits,
-                 'name_tytle': name_tytle, 'name_text': name_text,
+                 'name_tytle': name_tytle, 'name_text': name_text, 'name_authors': name_authors,
                  'name_book': name_book, 'name_genre': name_genre,
-                 'name_poem': name_poem, 'name_author': name_author},
+                 'name_poems_guskov': name_poems_guskov, 'name_poems_authors': name_poems_authors}
     )
 
 # ================== INDEX UKR MDN Web Docs part 5 ===========================
@@ -47,60 +53,74 @@ def index(request):
     # Генерация "количеств" некоторых главных объектов
 
     num_genres = Genre.objects.all().count()
-    num_poems  = Poem.objects.all().count()
     num_books  = Book.objects.all().count()
-    num_authors = Author.objects.all().count()
+    num_poems_guskov = Poem.objects.all().filter(author = 1).count()
+    num_authors = Author.objects.all().count() - 1
+    num_poems_authors = Poem.objects.all().count() - num_poems_guskov
+
     # Number of visits to this view, as counted in the session variable.
     num_visits = request.session.get('num_visits', 0)
-    request.session['num_visits'] = num_visits - 1
+    request.session['num_visits'] = num_visits + 1
 
     name_tytle = "Бібліотека поезій Анатолія Гуськова"
     name_text = "Поетична бібліотека містить:"
     name_book = "Книг"
     name_genre = "Жанрів"
-    name_poem = "Віршів"
-    name_author = "Авторів"
+    name_poems_guskov = "Віршів А. Гуськова"
+    name_authors = "Інших авторів"
+    name_poems_authors = "Віршів інших авторів"
     # Отрисовка HTML-шаблона index.html с данными
     # внутри переменной контекста context
     return render(
         request, 'poems/index.html',
-        context={'num_genres': num_genres, 'num_poems': num_poems, 'num_authors': num_authors,
+        context={'num_genres': num_genres,
+                 'num_poems_guskov': num_poems_guskov,
+                 'num_poems_authors': num_poems_authors, 'num_authors': num_authors,
                  'num_books': num_books, 'num_visits': num_visits,
-                 'name_tytle': name_tytle, 'name_text': name_text, 'name_author': name_author,
-                 'name_book': name_book, 'name_genre': name_genre, 'name_poem': name_poem},
+                 'name_tytle': name_tytle, 'name_text': name_text, 'name_authors': name_authors,
+                 'name_book': name_book, 'name_genre': name_genre,
+                 'name_poems_guskov': name_poems_guskov, 'name_poems_authors': name_poems_authors}
     )
 
 # =============== AUTHORS Пользовательское представление ================
 def author_list(request):
-    author_list = Author.objects.all()
-    num_authors = Author.objects.count() - 1
-    name_tytle = "Other Author"
-    name_text = "There are authors:"
+    author_list = Author.objects.all().filter(~Q(id=1))
+    num_authors = Author.objects.all().filter(~Q(id=1)).count()
+    num_poems = Poem.objects.all().filter(~Q(author_id=1)).count()
+
+    name_tytle = "Another Author"
+    name_authors = "There are authors:"
+    name_poems = "poems:"
     name_library = "Poetry library by Anatoliy Guskov"
-    name_poem_list = "Poem List of Author"
+    name_poem_list = "Choose an author to see his poems"
 
     return render(
         request,
         'poems/author_list.html',
         context={'author_list': author_list, 'num_authors': num_authors,
-                 'name_tytle': name_tytle, 'name_text': name_text,
-                 'name_library': name_library, 'name_poem_list': name_poem_list }
+                 'name_tytle': name_tytle, 'name_authors': name_authors,
+                 'name_poems': name_poems, 'num_poems': num_poems,
+                 'name_library': name_library, 'name_poem_list': name_poem_list}
     )
 
 # =======================================
 def author_list_ukr(request):
-    author_list = Author.objects.all()
-    num_authors = Author.objects.count() - 1
+    author_list = Author.objects.all().filter(~Q(id=1))
+    num_authors = Author.objects.all().filter(~Q(id=1)).count()
+    num_poems = Poem.objects.all().filter(~Q(author_id=1)).count()
+
     name_tytle = "Інші Автори"
-    name_text = "Усього авторів:"
+    name_authors = "Усього авторів:"
+    name_poems = "віршів:"
     name_library = "Бібліотека поезій Анатолія Гуськова"
-    name_poem_list = "Перелік віршів автора"
+    name_poem_list = "Обири автора, щоб побачити його вірші"
 
     return render(
         request,
         'poems/author_list.html',
         context={'author_list': author_list, 'num_authors': num_authors,
-                 'name_tytle': name_tytle, 'name_text': name_text,
+                 'name_tytle': name_tytle, 'name_authors': name_authors,
+                 'name_poems': name_poems, 'num_poems': num_poems,
                  'name_library': name_library, 'name_poem_list': name_poem_list }
     )
 
@@ -198,108 +218,136 @@ def book_list_ukr(request):
 
 # =============== POEMS LIST TYTLE ================
 def poem_list(request):
-    poem_list = Poem.objects.all().filter( author_id = 1)
+    poem_list = Poem.objects.all().filter(author_id = 1)
+    poem_list_authors = Poem.objects.all().filter(~Q(author_id = 1))
 
     name_tytle_poem = "Перелік Віршів"
-    name_text_poem = "Усьго віршів"
+    name_num = "Усього віршів"
+    name_num_poems = "Вірші А. Гуськова"
     name_library = "Бібліотека поезій Анатолія Гуськова"
+    name_num_poems_authors = "Вірші інших авторів"
 
     return render(
         request,
         'poems/poem_list.html',
-        context={'poem_list' : poem_list, 'len' : len(poem_list),
-                 'name_tytle_poem': name_tytle_poem, 'name_text_poem': name_text_poem,
-                 'name_library': name_library,
+        context={'poem_list_guskov': poem_list, 'poem_list_authors': poem_list_authors,
+                 'num_guskov': len(poem_list), 'num_authors': len(poem_list_authors),
+                 'num': len(poem_list) + len(poem_list_authors),
+                 'name_tytle_poem': name_tytle_poem, 'name_num_poems': name_num_poems,
+                 'name_num_poems_authors': name_num_poems_authors,
+                 'name_library': name_library, 'name_num': name_num,
                  }
     )
 # ===============================
 def poem_list_ukr(request):
-    poem_list = Poem.objects.all().filter(poem_lang = 'укр.')
+    poem_list = Poem.objects.all().filter(author_id=1, poem_lang = 'укр.')
+    poem_list_authors = Poem.objects.all().filter(~Q(author_id=1),poem_lang = 'укр.')
 
-    name_tytle_poem = "Перелік Віршів"
-    name_text_poem = "Віршів українською"
+    name_tytle_poem = "Вірші українською"
     name_library = "Бібліотека поезій Анатолія Гуськова"
+    name_num = "Усього віршів"
+    name_num_poems = "Вірші А. Гуськова"
+    name_num_poems_authors = "Вірші інших авторів"
 
     return render(
         request,
         'poems/poem_list.html',
-        context={'poem_list' : poem_list, 'len' : len(poem_list),
-                 'name_tytle_poem': name_tytle_poem, 'name_text_poem': name_text_poem,
-                 'name_library': name_library,
+        context={'poem_list_guskov': poem_list, 'poem_list_authors': poem_list_authors,
+                 'num_guskov': len(poem_list), 'num_authors': len(poem_list_authors),
+                 'num': len(poem_list) + len(poem_list_authors),
+                 'name_tytle_poem': name_tytle_poem, 'name_num_poems': name_num_poems,
+                 'name_num_poems_authors': name_num_poems_authors,
+                 'name_library': name_library, 'name_num': name_num,
                  }
     )
 # ===============================
 def poem_list_rus(request):
-    poem_list = Poem.objects.all().filter(poem_lang = 'рос.')
+    poem_list = Poem.objects.all().filter(author_id=1, poem_lang='рос.')
+    poem_list_authors = Poem.objects.all().filter(~Q(author_id=1), poem_lang='рос.')
 
-    name_tytle_poem = "Перелік Віршів"
-    name_text_poem = "Віршів російською"
+    name_tytle_poem = "Вірші російською"
     name_library = "Бібліотека поезій Анатолія Гуськова"
+    name_num = "Усього віршів"
+    name_num_poems = "Вірші А. Гуськова"
+    name_num_poems_authors = "Вірші інших авторів"
 
     return render(
         request,
         'poems/poem_list.html',
-        context={'poem_list' : poem_list, 'len' : len(poem_list),
-                 'name_tytle_poem': name_tytle_poem, 'name_text_poem': name_text_poem,
-                 'name_library': name_library,
+        context={'poem_list_guskov': poem_list, 'poem_list_authors': poem_list_authors,
+                 'num_guskov': len(poem_list), 'num_authors': len(poem_list_authors),
+                 'num': len(poem_list) + len(poem_list_authors),
+                 'name_tytle_poem': name_tytle_poem, 'name_num_poems': name_num_poems,
+                 'name_num_poems_authors': name_num_poems_authors,
+                 'name_library': name_library, 'name_num': name_num,
                  }
     )
-
 # ====================================
 def poem_list_string(request):
-    poem_list_str = Poem.objects.order_by("headline")
+    poem_list = Poem.objects.all().filter(author_id=1).order_by("headline")
+    poem_list_authors = Poem.objects.all().filter(~Q(author_id=1)).order_by("headline")
 
     name_tytle_poem = "Перелік Віршів"
-    name_text_poem = "Усьго віршів"
+    name_num = "Усього віршів"
+    name_num_poems = "Вірші А. Гуськова"
     name_library = "Бібліотека поезій Анатолія Гуськова"
-
+    name_num_poems_authors = "Вірші інших авторів"
 
     return render(
-            request,
-            'poems/poem_list_string.html',
-            context={'poem_list_str': poem_list_str, 'len': len(poem_list_str),
-                     'name_tytle_poem': name_tytle_poem, 'name_text_poem': name_text_poem,
-                     'name_library': name_library,
-                     }
-        )
-
+        request,
+        'poems/poem_list_string.html',
+        context={'poem_list_guskov': poem_list, 'poem_list_authors': poem_list_authors,
+                 'num_guskov': len(poem_list), 'num_authors': len(poem_list_authors),
+                 'num': len(poem_list) + len(poem_list_authors),
+                 'name_tytle_poem': name_tytle_poem, 'name_num_poems': name_num_poems,
+                 'name_num_poems_authors': name_num_poems_authors,
+                 'name_library': name_library, 'name_num': name_num,
+                 }
+    )
 # ===============================================
 def poem_list_string_ukr(request):
-    poem_list_str = Poem.objects.order_by("headline").filter(poem_lang = 'укр.')
+    poem_list = Poem.objects.all().filter(author_id=1, poem_lang = 'укр.').order_by("headline")
+    poem_list_authors = Poem.objects.all().filter(~Q(author_id=1), poem_lang = 'укр.').order_by("headline")
 
-    name_tytle_poem = "Перелік Віршів"
-    name_text_poem = " Віршів українською"
+    name_tytle_poem = "Вірші українською"
+    name_num = "Усього віршів"
+    name_num_poems = "Вірші А. Гуськова"
     name_library = "Бібліотека поезій Анатолія Гуськова"
-
+    name_num_poems_authors = "Вірші інших авторів"
 
     return render(
-            request,
-            'poems/poem_list_string.html',
-            context={'poem_list_str': poem_list_str, 'len': len(poem_list_str),
-                     'name_tytle_poem': name_tytle_poem, 'name_text_poem': name_text_poem,
-                     'name_library': name_library,
-                     }
-        )
-
+        request,
+        'poems/poem_list_string.html',
+        context={'poem_list_guskov': poem_list, 'poem_list_authors': poem_list_authors,
+                 'num_guskov': len(poem_list), 'num_authors': len(poem_list_authors),
+                 'num': len(poem_list) + len(poem_list_authors),
+                 'name_tytle_poem': name_tytle_poem, 'name_num_poems': name_num_poems,
+                 'name_num_poems_authors': name_num_poems_authors,
+                 'name_library': name_library, 'name_num': name_num,
+                 }
+    )
 # ==================================================
 def poem_list_string_rus(request):
-    poem_list_str = Poem.objects.order_by("headline").filter(poem_lang = 'рос.')
+    poem_list = Poem.objects.all().filter(author_id=1, poem_lang='рос.').order_by("headline")
+    poem_list_authors = Poem.objects.all().filter(~Q(author_id=1), poem_lang='рос.').order_by("headline")
 
-    name_tytle_poem = "Перелік Віршів"
-    name_text_poem = "Віршів російською"
+    name_tytle_poem = "Вірші російською"
+    name_num = "Усього віршів"
+    name_num_poems = "Вірші А. Гуськова"
     name_library = "Бібліотека поезій Анатолія Гуськова"
-
+    name_num_poems_authors = "Вірші інших авторів"
 
     return render(
-            request,
-            'poems/poem_list_string.html',
-            context={'poem_list_str': poem_list_str, 'len': len(poem_list_str),
-                     'name_tytle_poem': name_tytle_poem, 'name_text_poem': name_text_poem,
-                     'name_library': name_library,
-                     }
-        )
-
-
+        request,
+        'poems/poem_list_string.html',
+        context={'poem_list_guskov': poem_list, 'poem_list_authors': poem_list_authors,
+                 'num_guskov': len(poem_list), 'num_authors': len(poem_list_authors),
+                 'num': len(poem_list) + len(poem_list_authors),
+                 'name_tytle_poem': name_tytle_poem, 'name_num_poems': name_num_poems,
+                 'name_num_poems_authors': name_num_poems_authors,
+                 'name_library': name_library, 'name_num': name_num,
+                 }
+    )
 # # ===============================
 # def genre_poems(request):
 #     genre_name = Genre.objects.get(pk = id)
