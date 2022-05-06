@@ -15,6 +15,7 @@
 
     .image_top {
         background: none;
+        color: darkblue;
         border: 0px solid black;
         position: absolute;
         left:0.0%;       top:0.0%;
@@ -57,6 +58,16 @@
         -webkit-column-rule: 1px solid #ccc;   -moz-column-rule: 1px solid #ccc;  column-rule: 1px solid #ccc;
     }
 
+    .side_right_genre {
+        background: none;
+        border: 0px solid black;
+        overflow: auto;
+        position: absolute;
+        left:103%;       top:0px;
+        width: 20%;   height: 80.0%;
+        padding-left: 0;
+        color: blue;
+    }
 
 </style>
 
@@ -67,9 +78,13 @@
 
     {% block content %}
 <div class="image_top">
-
-<img src="{% static 'images/genre_from_Bakla.png' %}" alt="Bakla Genre"
+   {% if genre.image_genre %}
+    <img src="{% static genre.image_genre %}" alt={{genre.name}}
          style="width:100%;height:100.0%;"/>
+   {% else %}
+    <img src="{% static 'images/genre_from_Bakla.png' %}" alt="Bakla Genre"
+         style="width:100%;height:100.0%;"/>
+    {% endif %}
 
     <div class="top-left"> <h2>{{ genre.name }}</h2> </div>
     <div class="bottom-left"> <p style = "color:white">
@@ -85,6 +100,15 @@
 
 {% endfor %}
      </div> <!-- poem_genre_list -->
+
+     <div class="side_right_genre">
+         <h5><b>Жанри віршів</b></h5>
+{% for genre in genre_list %}
+
+   <a href="{{ genre.get_absolute_url }}"> <b style = "font-size: 12px"> {{ genre.name }} </b></a><br>
+
+{% endfor %}
+     </div> <!-- side_right_genre -->
 
 
 

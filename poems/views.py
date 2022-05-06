@@ -178,10 +178,10 @@ def genre_detail(request, pk):
                  'name_tytle': name_tytle, 'name_text': name_text,
                  'name_poem': name_poem, 'name_library': name_library }
     )
-#======================================
+#================= BOOK =====================
 
 def book_list(request):
-    book_list = Book.objects.all()
+    book_list = Book.objects.all().order_by("-public_date")
 
     name_tytle = "Book List"
     name_text = "The are books:"
@@ -197,9 +197,9 @@ def book_list(request):
                  'name_from': name_from,
                  'name_poem': name_poem, 'name_library': name_library}
     )
-#======================================
+#================================= book_list_ukr
 def book_list_ukr(request):
-    book_list = Book.objects.all()
+    book_list = Book.objects.all().order_by("-public_date")
 
     name_tytle = "Перелік Книг"
     name_text = "Усього книг:"
@@ -216,7 +216,7 @@ def book_list_ukr(request):
                  'name_poem': name_poem}
     )
 
-# =============== POEMS LIST TYTLE ================
+# =============== POEMS LIST TITLE ================
 def poem_list(request):
     poem_list = Poem.objects.all().filter(author_id = 1)
     poem_list_authors = Poem.objects.all().filter(~Q(author_id = 1))
@@ -238,7 +238,7 @@ def poem_list(request):
                  'name_library': name_library, 'name_num': name_num,
                  }
     )
-# ===============================
+# ===============================  poem_list_ukr
 def poem_list_ukr(request):
     poem_list = Poem.objects.all().filter(author_id=1, poem_lang = 'укр.')
     poem_list_authors = Poem.objects.all().filter(~Q(author_id=1),poem_lang = 'укр.')
@@ -260,7 +260,7 @@ def poem_list_ukr(request):
                  'name_library': name_library, 'name_num': name_num,
                  }
     )
-# ===============================
+# =============================== poem_list_rus
 def poem_list_rus(request):
     poem_list = Poem.objects.all().filter(author_id=1, poem_lang='рос.')
     poem_list_authors = Poem.objects.all().filter(~Q(author_id=1), poem_lang='рос.')
@@ -282,7 +282,7 @@ def poem_list_rus(request):
                  'name_library': name_library, 'name_num': name_num,
                  }
     )
-# ====================================
+# ===================== POEMS LIST STRING ===============
 def poem_list_string(request):
     poem_list = Poem.objects.all().filter(author_id=1).order_by("headline")
     poem_list_authors = Poem.objects.all().filter(~Q(author_id=1)).order_by("headline")

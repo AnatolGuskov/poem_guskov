@@ -10,5 +10,7 @@ def author (request):
     name_genre_text = "У цьому жанрі віршів:"
 
     return{'author_list': Author.objects.all(),
+           'genre_list': Genre.objects.all(),
+           'book_list': Book.objects.all(),
            'name_tytle': name_tytle, 'name_text': name_text,
            'name_genre_text': name_genre_text }

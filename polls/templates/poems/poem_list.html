@@ -104,7 +104,7 @@
 <div class = "poem_list">
     {% if poem_list_guskov %}  <!-- GUSKOV  -->
 
-      <h5 style="color: darkblue;"> {{ name_num_poems }}: {{ num_guskov }} </h5>
+      <h5 style="color: darkblue;"> <b> {{ name_num_poems }}: {{ num_guskov }} </b></h5>
 
     {% for poem in poem_list_guskov %}
 
@@ -122,7 +122,7 @@
       {% if poem_list_authors %}  <!-- ANOTHER  -->
 
 
-      <h5 style="color: darkblue;"> {{ name_num_poems_authors }}: {{ num_authors }} </h5>
+    <h5 style="color: darkblue;"> <b>{{ name_num_poems_authors }}: {{ num_authors }} </b> </h5>
       {% for poem in poem_list_authors %}
 
 <table style="width: 100.0%">

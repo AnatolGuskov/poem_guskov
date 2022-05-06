@@ -98,27 +98,9 @@
 <table style="width: 98.0%">
 <!--<br>-->
 <tr>
-      <td style="width: 11.0%; height: 25.5%">
-            {% if book.id == 1 %}
-                 <img src="{% static 'images/2019_djakuju.jpg' %}" alt="2019 djakuju"
+      <td style="width: 10.0%; height: 25.5%; border: 2px solid rgb(210, 250, 240);">
+                 <img src="{% static book.image_book %}" alt="{{ book.name_book }}"
                      style="width:75.0%;height:90%;"/>
-            {% endif %}
-            {% if book.id == 2 %}
-                 <img src="{% static 'images/2020_bereg.jpg' %}" alt="2020 bereg"
-                      style="width:75.0%;height:90%;"/>
-            {% endif %}
-            {% if book.id == 3 %}
-                 <img src="{% static 'images/2021_teni.jpg' %}" alt="2021 teni"
-                      style="width:75.0%;height:90%;"/>
-            {% endif %}
-            {% if book.id == 4 %}
-                 <img src="{% static 'images/2022_vino.jpg' %}" alt="2022 vino"
-                      style="width:75.0%;height:90%;"/>
-            {% endif %}
-            {% if book.id == 5 %}
-                 <img src="{% static 'images/2022_war.jpg' %}" alt="2022 war"
-                      style="width:75.0%;height:90%;"/>
-            {% endif %}
       </td>
 
       <td style="width: 45.0%">
@@ -148,15 +130,23 @@
 
 </html>
 
+          {% if book.id == 1 %}
+                 <img src="{% static 'images/2019_djakuju.jpg' %}" alt="2019 djakuju"
+                     style="width:75.0%;height:90%;"/>
+            {% endif %}
             {% if book.id == 2 %}
-                 <img src="{% static 'images/2020_bereg.jpg' %}" alt="2020 bereg" style="width:250px;height:300px;"/>
-            {% endif %}
-            {% if book.id == 3 %}
-                 <img src="{% static 'images/2021_teni.jpg' %}" alt="2021 teni" style="width:250px;height:300px;"/>
-            {% endif %}
-            {% if book.id == 4 %}
-                 <img src="{% static 'images/2022_vino.jpg' %}" alt="2022 vino" style="width:250px;height:300px;"/>
+                 <img src="{% static 'images/2020_bereg.jpg' %}" alt="2020 bereg"
+                      style="width:75.0%;height:90%;"/>
             {% endif %}
             {% if book.id == 5 %}
-                 <img src="{% static 'images/2022_war.jpg' %}" alt="2022 war" style="width:250px;height:300px;"/>
+                 <img src="{% static 'images/2021_teni.jpg' %}" alt="2021 teni"
+                      style="width:75.0%;height:90%;"/>
+            {% endif %}
+            {% if book.id == 4 %}
+                 <img src="{% static 'images/2022_vino.jpg' %}" alt="2022 vino"
+                      style="width:75.0%;height:90%;"/>
+            {% endif %}
+            {% if book.id == 3 %}
+                 <img src="{% static 'images/2022_war.jpg' %}" alt="2022 war"
+                      style="width:75.0%;height:90%;"/>
             {% endif %}

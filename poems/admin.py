@@ -9,7 +9,7 @@ admin.site.register(Author, AuthorAdmin)
 
 
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('title', 'id', 'author', )
+    list_display = ('title', 'id', 'public_date', 'author', )
 admin.site.register(Book, BookAdmin)
 
 
@@ -19,7 +19,7 @@ admin.site.register(Poem, PoemAdmin)
 
 
 class GenreAdmin(admin.ModelAdmin):
-    list_display = ('name', 'id')
+    list_display = ('name', 'id', 'image_genre')
 admin.site.register(Genre, GenreAdmin)
 
 

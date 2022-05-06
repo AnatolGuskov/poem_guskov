@@ -42,6 +42,17 @@
         color:rgb(56, 45, 56); font-size: 20; text-decoration: greenyellow;
     }
 
+    .side_right_book {
+        background: none;
+        border: 0px solid black;
+        overflow: auto;
+        position: absolute;
+        left:103%;       top:0px;
+        width: 20%;   height: 80.0%;
+        padding-left: 0;
+        color: blue;
+    }
+
     </style>
 
     {% extends "poems/base_generic.html" %}
@@ -57,6 +68,10 @@
 
       <h3 style="line-height: 0.5">{{ book.title }}</h3>
 <table style="width: 100%; height:70%">
+<tr>
+      <td style="width: 20.0%"><p1><strong>ISBN:</strong></p1> </td>
+      <td><p1>{% if book.Isbn != "ISBN" %} {{ book.isbn }} {% endif %}</p1> </td>
+</tr>
 <tr>
       <td style="width: 20.0%"><p1><strong>Public date:</strong></p1> </td>
       <td><p1>{% if book.public_date %} {{ book.public_date }} {% endif %}</p1> </td>
@@ -82,26 +97,10 @@
   </div>  <!-- Конец Блок деталей книги -->
 
   <div class="book_image">  <!-- Блок обложки книги -->
-{% if book.id == 1 %}
-     <img src="{% static 'images/2019_djakuju.jpg' %}" alt="2019 djakuju"
-          style="width:100%;height:100%;"/>
-{% endif %}
-{% if book.id == 2 %}
-     <img src="{% static 'images/2020_bereg.jpg' %}" alt="2020 bereg"
-          style="width:100%;height:100%;"/>
-{% endif %}
-{% if book.id == 3 %}
-     <img src="{% static 'images/2021_teni.jpg' %}" alt="2021 teni"
-          style="width:100%;height:100%;"/>
-{% endif %}
-{% if book.id == 4 %}
-     <img src="{% static 'images/2022_vino.jpg' %}" alt="2022 vino"
-          style="width:100%;height:100%;"/>
-{% endif %}
-{% if book.id == 5 %}
-     <img src="{% static 'images/2022_war.jpg' %}" alt="2022 war"
-          style="width:100%;height:100%;"/>
-{% endif %}
+
+      <img src="{% static book.image_book %}" alt="{{ book.name_book }}"
+                     style="width:100.0%;height:100%;"/>
+
   </div>  <!-- Конец Блок обложки книги -->
 
   <div class="book_poems"> <!-- Блок перечня стихотворений книги -->
@@ -111,6 +110,18 @@
 {% endfor %}
    <br> <br>
   </div> <!-- Конец Блок перечня стихотворений книги -->
+
+     <div class="side_right_book">
+         <h5><b> Книги віршів</b></h5>
+{% for book in book_list %}
+   <li>
+   <a href="{{ book.get_absolute_url }}">
+       <b style = "line-height: 0.5; font-size: 12px"> {{ book.title }} </b></a><br>
+   </li>
+{% endfor %}
+     </div> <!-- side_right_book -->
+
+
 
 {% endblock %}
 
