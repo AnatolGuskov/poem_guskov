@@ -19,7 +19,7 @@ admin.site.register(Poem, PoemAdmin)
 
 
 class GenreAdmin(admin.ModelAdmin):
-    list_display = ('name', 'id', 'image_genre')
+    list_display = ('name', 'id', 'image_genre', 'genre_text_color', 'image_name')
 admin.site.register(Genre, GenreAdmin)
 
 

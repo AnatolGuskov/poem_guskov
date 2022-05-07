@@ -5,16 +5,49 @@
         table, th, td {
           border:0px solid black;
         }
+.tytle {
+        background: none;
+        border: 0px solid black;
+        position: absolute;
+        left:0.0%;       top:35.0%;
+        width: 100.0%;   height: 8.0%;
+        padding-left: 10px;
+        color: rgb(31, 81, 255);
+    }
 
     .info {
         background: none;
         border: 0px solid black;
         position: absolute;
-        left:0.0%;       top:40.0%x;
-        width: 100.0%;   height: 98.0%;
+        left:0.0%;       top:47.0%;
+        width: 40.0%;   height: 51.0%;
         padding-left: 10px;
         list-style: none;
+        color: rgb(31, 81, 255);
     }
+
+    .new_book {
+        background: none;
+        border: 0px solid black;
+        position: absolute;
+        left:48.0%;       top:47.0%;
+        width: 52.0%;   height: 51.0%;
+        padding-left: 10px; padding-top: 10px;
+        list-style: none;
+        color: black;
+    }
+
+    .side_right_poem {
+        background: none;
+        border: 0px solid black;
+        overflow: auto;
+        position: absolute;
+        left:103%;       top:0px;
+        width: 20%;   height: 80.0%;
+        padding-left: 0;
+        color: blue;
+    }
+
 
         </style>
     <meta charset="UTF-8">
@@ -31,15 +64,15 @@
 <img src="{% static 'images/index_from_Bakla.png' %}" alt="From Bakla"
      style="width:100%;height:37.2%;"/>
 
+<h1 class="tytle"> {{name_tytle}} </h1>
+
 <div class = "info">
 
-<h1> {{name_tytle}} </h1>
-
-<h2></h2>
+<br>
 
   <p>{{name_text}}</p>
 
-<table style="width: 35.0%">
+<table style="width: 100.0%">
 
 <tr>
    <td style="width:85.0%"> <li><strong>{{name_book}}:</strong></li> </td>
@@ -69,11 +102,37 @@
 </table>
 
 
-<br>
-  <p>You have visited this page {{ num_visits }}
+<br><br><br><br>
+  <p style = "font-size: 11px">You have visited this page {{ num_visits }}
         {% if num_visits == 1 %} time{% else %} times{% endif %}.</p>
 
 </div> <!-- info -->
+
+<div class = "new_book">
+
+    <table style="width: 100.0%">
+
+        <td style="width: 40.0%; vertical-align: top">
+           <a href="{% url 'poems:book-detail' 5 %}">
+               <br><strong>РEКОМЕНДУЄМО</strong></a>
+                Тематична збірка професійних і аматорських віршів, присвячених російсько-українській війні</td>
+        <td style="width: 60.0%; ">
+                 <img src="{% static 'images/books/2022_war.jpg' %}" alt="book_war"
+                     style="width:100.0%;height:100%;"/>
+        </td>
+
+    </table>
+</div>  <!-- new_book -->
+
+ <div class="side_right_poem">
+         <h5 style ="color: blue;"><b>Останні вірші</b></h5>
+{% for poem in last_poem_list %}
+
+   <a href="{{ poem.get_absolute_url }}"> <b style = "font-size: 12px">
+            {{ poem.tytle }} </b></a><br>
+
+{% endfor %}
+     </div> <!-- side_right_poem -->
 
 {% endblock %}
 

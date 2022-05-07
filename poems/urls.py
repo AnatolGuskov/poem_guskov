@@ -12,20 +12,20 @@ app_name = 'poems'
 #POEM_GUSKOV
 
 urlpatterns = [
-    path('eng', views.index_eng, name='index_eng'),
+    # path('eng', views.index_eng, name='index_eng'),
     path('', views.index, name='index'),
 
-    path('authors/', views.author_list, name='authors'),
+    # path('authors/', views.author_list, name='authors'),
     path('authors/ukr', views.author_list_ukr, name='authors_ukr'),
     path('authors/<pk>', views.AuthorDetailView.as_view(), name='author-detail'),
 
     # path(r'^genres/$', views.GenreListView.as_view(), name='genres'),
-    path('genres/', views.genre_list, name='genres'),
+    # path('genres/', views.genre_list, name='genres'),
     path('genres/ukr', views.genre_list_ukr, name='genres_ukr'),
     # path(r'^genres/(?P<pk>\d+)$', views.GenreDetailView.as_view(), name='genre-detail'),
     path('genres/<pk>', views.genre_detail, name='genre-detail'),
 
-    path('books/', views.book_list, name='books'),
+    # path('books/', views.book_list, name='books'),
     path('books/ukr', views.book_list_ukr, name='books_ukr'),
     path('book/<pk>', views.BookDetailView.as_view(), name='book-detail'),
 

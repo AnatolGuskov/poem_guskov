@@ -59,7 +59,7 @@
         background: none;
         border: 0px solid black;
         position: absolute;
-        left:8.0%;       top:4.0%;
+        left:8.0%;       top:0.0%;
         width: 80%;   height:;
         padding-left: 0;
         list-style: none;
@@ -67,7 +67,7 @@
     .copy_right {
         border: 0px solid black;
         position: absolute;
-        left:8.0%;       top:93.0%;
+        left:8.0%;       top:86.0%;
     }
 
     </style>
@@ -78,7 +78,6 @@
 
 </head>
 
-
 <body>
 <!--<div class="container-fluid">-->
       {% block sidebar %}
@@ -87,7 +86,8 @@
       <img src="{% static 'images/panel_left.png' %}" alt="Chatyrdag_left"
                  style="width:100%;height:100%;"/>
 
-      <ul class="menu_ukr">
+      <div class="menu_ukr">
+           <h5 style ="color: blue;"><b>Головне меню</b></h5>
 
           <li><a href="{% url 'poems:index' %}"><strong>Домашня</strong></a></li>
           <li><a href="{% url 'poems:books_ukr' %}"><strong>Всі Книги</strong></a></li>
@@ -96,14 +96,18 @@
           <li><a href="{% url 'poems:poem_string' %}"><strong>Вірші Строки</strong></a></li>
           <li><a href="{% url 'poems:authors_ukr' %}"><strong>Інші Автори</strong></a></li>
 
-    </ul>  <!-- menu_ukr -->
+    </div>  <!-- menu_ukr -->
 
       <div class="copy_right">
 
-          <p style="line-height: 100%; font-size: 12px; color: white">
+          <p style="line-height: 50%; font-size: 12px; color: white">
               <b> &#169 Anatoliy Guskov </b> </p>
           <p style="line-height: 50%; font-size: 11px; color: white">
-              &nbsp;&nbsp;&nbsp;&nbsp;Version: April 2022  </p>
+              &nbsp;&nbsp;&nbsp;&nbsp;Version: Mai 2022  </p>
+          <p style="line-height: 50%; font-size: 11px; color: white">
+              &nbsp;&nbsp;&nbsp;&nbsp;dkgb@i.ua </p>
+          <p style="line-height: 50%; font-size: 11px; color: white">
+             &nbsp;&nbsp;&nbsp;&nbsp;+380 97 760 4885 </p>
       </div>  <!-- copy_right  -->
 
 
@@ -113,23 +117,6 @@
     <img src="{% static 'images/panel_right.png' %}" alt="Chatyrdag_right"
                  style="width:100%;height:100%;"/>
 
-<!--      <ul class="menu">-->
-<!--              <li><a href="{% url 'poems:index_eng' %}"><strong>Home</strong></a></li>-->
-<!--              <li><a href="{% url 'poems:books' %}"><strong>All Books</strong></a></li>-->
-<!--              <li><a href="{% url 'poems:genres' %}"><strong>All Genres</strong></a></li>-->
-<!--              <li><a href="{% url 'poems:poem_tytle' %}"><strong>Poem Tytles</strong></a></li>-->
-<!--              <li><a href="{% url 'poems:poem_string' %}"><strong>Poem Strings</strong></a></li>-->
-<!--              <li><a href="{% url 'poems:authors' %}"><strong>Another Authors</strong></a></li>-->
-<!--      </ul>  &lt;!&ndash; menu &ndash;&gt;-->
-
-
-    <div class="copy_right">
-
-          <p style="line-height: 50%; font-size: 12px; color: white">
-              <b> dkgb@i.ua </b> </p>
-          <p style="line-height: 100%; font-size: 11px; color: white">
-            Viber: 097 760 4885 </p>
-      </div>  <!-- copy_right  -->
 </div> <!-- side_right -->
 
  {% endblock %} <!-- sidebar -->

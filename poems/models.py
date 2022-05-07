@@ -51,6 +51,9 @@ class Genre(models.Model):
     name = models.CharField(max_length=30,
                             help_text="Enter a book genre (e.g. Бог, Війна, Любов etc.)")
     image_genre = models.CharField(max_length=200, default="")
+    image_name = models.CharField(max_length=200, default="", null = True , blank = True)
+    genre_text_color = models.CharField(max_length=30, default = 'bwbw')
+
 
     def __str__(self):
         return str(self.name)
@@ -73,7 +76,7 @@ class Book(models.Model):
     # language = models.ForeignKey(Language, on_delete=models.SET_NULL, null=True)
     pages = models.IntegerField(default=0)
     poems_count = models.IntegerField(default=0)
-    image_book = models.CharField(max_length=200, default="")
+    image_book = models.CharField(max_length=100, null = True , blank = True)
 
     def __str__(self):
         return str(str.upper(self.title))
@@ -97,7 +100,7 @@ class Poem(models.Model):
     book = models.ManyToManyField(Book, help_text="Enter books, where ware this poem")
     summary = models.TextField(blank = True, max_length=1000,
                                default="", help_text="Enter a poem description")
-    image_poem = models.CharField(max_length=200, default="")
+    image_poem = models.CharField(max_length=100, null = True , blank = True)
 
     def __str__(self):
         return str(self.tytle)
