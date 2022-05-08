@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Genre Image</title>
+
+
+</head>
+
+<style>
+    table, th, td {
+          border: 0px solid black;
+          vertical-align: top;
+        }
+
+    .top-left {
+        position: absolute;
+        top: 0%; height: 8.0%
+        left: 20px; width: 100.0%;
+        color: darkblue;
+        background: none;
+    }
+
+    .bottom-left {
+        position: absolute;
+        top: 85.0%;
+        left: 20px;
+        color: darkgrey;
+    }
+
+    .top-right {
+        position: absolute;
+         left: 75.0%;     top: 7.0%;
+         width: 22.0%;
+         text-align: right;
+    }
+
+    .bottom-right {
+        position: absolute;
+         left: 60.0%;     top: 83.0%;
+         width: 37.0%;
+         font-size: 8px; font-style: italic; text-align: right;
+    }
+
+    .image_genre_list {
+        background: none;
+        overflow: auto;
+        border: 0px solid black;
+        position: absolute;
+        left:0.0%;       top:12.0%;
+        width: 100.0%;   height: 88.0%;
+        padding-left: 0px;
+
+    }
+
+    .side_right_genre {
+        background: none;
+        border: 0px solid black;
+        overflow: auto;
+        position: absolute;
+        left:103%;       top:0px;
+        width: 20%;   height: 80.0%;
+        padding-left: 0;
+        color: blue;
+    }
+
+</style>
+
+<body>
+
+    {% extends "poems/base_generic.html" %}
+    {% load static %}
+
+    {% block content %}
+
+<div class="top-left">
+          <h2 style = "color:rgb(31, 81, 255)">
+              &nbsp;&nbsp;Фотоархів фонових зображень</h2>
+</div>  <!-- top-left -->
+
+<div class="image_genre_list">
+
+    {% for image in genre_image_list %}
+    <p>&nbsp;</p>
+
+   <img src="{% static image.image_genre %}" alt={{image.name}}
+         style="width:100%;height:47.0%;"/>
+    <h5 style = "color:rgb(31, 81, 255); font-size: 12px; font-style: italic;">
+           &nbsp;&nbsp;<b>{{ image.image_name }}</b> </h5>
+
+    {% endfor %}
+
+</div> <!-- image_genre_list -->
+
+     <div class="side_right_genre">
+         <h5 style ="color: blue;"><b>Жанри віршів</b></h5>
+{% for genre in genre_list %}
+
+   <a href="{{ genre.get_absolute_url }}"> <b style = "font-size: 12px"> {{ genre.name }} </b></a><br>
+
+{% endfor %}
+     </div> <!-- side_right_genre -->
+
+
+
+
+{% endblock %}
+
+
+
+</body>
+</html>

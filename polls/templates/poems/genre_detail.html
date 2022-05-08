@@ -118,9 +118,11 @@
 
     {% if genre.image_name %}
     <div class="bottom-right">
-        {% if color4 == "w" %} <h5 style = "color:white; font-size: 11px;"> {{ genre.image_name }} </h5> {% endif %}
-        {% if color4 == "g" %} <h5 style = "color:grey; font-size: 11px;">  {{ genre.image_name }} </h5> {% endif %}
-        {% if color4 == "b" %} <h5 style = "color:rgb(31, 81, 255); font-size: 11px;">  {{ genre.image_name }} </h5> {% endif %}
+        <b>
+        {% if color4 == "w" %} <h5 style = "color:white; font-size: 12px;"> {{ genre.image_name }} </h5> {% endif %}
+        {% if color4 == "g" %} <h5 style = "color:grey; font-size: 12px;">  {{ genre.image_name }} </h5> {% endif %}
+        {% if color4 == "b" %} <h5 style = "color:rgb(31, 81, 255); font-size: 12px;">  {{ genre.image_name }} </h5> {% endif %}
+        </b>
     </div>   <!-- bottom-right -->
     {% endif %}
 

@@ -24,17 +24,18 @@ urlpatterns = [
     path('genres/ukr', views.genre_list_ukr, name='genres_ukr'),
     # path(r'^genres/(?P<pk>\d+)$', views.GenreDetailView.as_view(), name='genre-detail'),
     path('genres/<pk>', views.genre_detail, name='genre-detail'),
+    path('image/', views.genre_image_list, name='genre_image'),
 
     # path('books/', views.book_list, name='books'),
     path('books/ukr', views.book_list_ukr, name='books_ukr'),
     path('book/<pk>', views.BookDetailView.as_view(), name='book-detail'),
 
     # path(r'^poems/$', views.PoemListView.as_view(), name='poem'),
-    path('poems/', views.poem_list, name='poem_tytle'),
+    path('poems/', views.poem_list_all, name='poem_tytle'),
     path('poems/ukr', views.poem_list_ukr, name='poem_tytle_ukr'),
     path('poems/rus', views.poem_list_rus, name='poem_tytle_rus'),
 
-    path('poems/str/', views.poem_list_string, name='poem_string'),
+    path('poems/str/', views.poem_list_string_all, name='poem_string'),
     path('poems/str/ukr', views.poem_list_string_ukr, name='poem_string_ukr'),
     path('poems/str/rus', views.poem_list_string_rus, name='poem_string_rus'),
 

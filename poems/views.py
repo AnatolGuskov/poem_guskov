@@ -112,9 +112,21 @@ def genre_detail(request, pk):
                  'color1': color1, 'color2': color2, 'color3': color3, 'color4': color4,
                  }
     )
-#================= BOOK =====================
 
-#================================= book_list_ukr
+#==================== genre_image_lst ===========
+def genre_image_list(request):
+    genre_image_list = Genre.objects.all().order_by('image_name')
+
+    return render(
+        request,
+        'poems/genre_image_list.html',
+        context={'genre_image_list': genre_image_list,
+
+                  }
+    )
+
+#================= BOOK =====================
+#=============== book_list_ukr
 def book_list_ukr(request):
     book_list = Book.objects.all().order_by("-public_date")
 
@@ -133,8 +145,8 @@ def book_list_ukr(request):
                  'name_poem': name_poem}
     )
 
-# =============== POEMS LIST TITLE ================
-def poem_list(request):
+# ============================= POEMS LIST TITLE ================
+def poem_list_all(request):
     poem_list = Poem.objects.all().filter(author_id = 1)
     poem_list_authors = Poem.objects.all().filter(~Q(author_id = 1))
 
@@ -155,7 +167,7 @@ def poem_list(request):
                  'name_library': name_library, 'name_num': name_num,
                  }
     )
-# ===============================  poem_list_ukr
+# =============================== poem_list_ukr
 def poem_list_ukr(request):
     poem_list = Poem.objects.all().filter(author_id=1, poem_lang = 'укр.')
     poem_list_authors = Poem.objects.all().filter(~Q(author_id=1),poem_lang = 'укр.')
@@ -199,8 +211,8 @@ def poem_list_rus(request):
                  'name_library': name_library, 'name_num': name_num,
                  }
     )
-# ===================== POEMS LIST STRING ===============
-def poem_list_string(request):
+# ============================== POEMS LIST STRING =====+++++==========
+def poem_list_string_all(request):
     poem_list = Poem.objects.all().filter(author_id=1).order_by("headline")
     poem_list_authors = Poem.objects.all().filter(~Q(author_id=1)).order_by("headline")
 
@@ -221,7 +233,7 @@ def poem_list_string(request):
                  'name_library': name_library, 'name_num': name_num,
                  }
     )
-# ===============================================
+# ================================ poem_list_string_ukr ===============
 def poem_list_string_ukr(request):
     poem_list = Poem.objects.all().filter(author_id=1, poem_lang = 'укр.').order_by("headline")
     poem_list_authors = Poem.objects.all().filter(~Q(author_id=1), poem_lang = 'укр.').order_by("headline")
@@ -243,7 +255,7 @@ def poem_list_string_ukr(request):
                  'name_library': name_library, 'name_num': name_num,
                  }
     )
-# ==================================================
+# ================================ poem_list_string_rus ==================
 def poem_list_string_rus(request):
     poem_list = Poem.objects.all().filter(author_id=1, poem_lang='рос.').order_by("headline")
     poem_list_authors = Poem.objects.all().filter(~Q(author_id=1), poem_lang='рос.').order_by("headline")
@@ -265,10 +277,13 @@ def poem_list_string_rus(request):
                  'name_library': name_library, 'name_num': name_num,
                  }
     )
+
+
+
+
 # =============== Обобщенные представление (архив) ================
 class GenreListView(generic.ListView):
     model = Genre
-
 # ===============================
 class GenreDetailView(generic.DetailView):
     model = Genre
