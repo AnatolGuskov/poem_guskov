@@ -54,7 +54,7 @@ def author_list_ukr(request):
     num_authors = Author.objects.all().filter(~Q(id=1)).count()
     num_poems = Poem.objects.all().filter(~Q(author_id=1)).count()
 
-    name_tytle = "Інші Автори"
+    name_tytle = "Автори Поезії війни"
     name_authors = "Усього авторів:"
     name_poems = "віршів:"
     name_library = "Бібліотека поезій Анатолія Гуськова"
@@ -116,12 +116,13 @@ def genre_detail(request, pk):
 #==================== genre_image_lst ===========
 def genre_image_list(request):
     genre_image_list = Genre.objects.all().order_by('image_name')
+    num_image = Genre.objects.all().count() + 5
 
     return render(
         request,
         'poems/genre_image_list.html',
         context={'genre_image_list': genre_image_list,
-
+                 'num_image': num_image,
                   }
     )
 

@@ -68,6 +68,16 @@
         list-style: none;
     }
 
+    .side_right_author {
+        background: none;
+        border: 0px solid black;
+        overflow: auto;
+        position: absolute;
+        left:103%;       top:0px;
+        width: 20%;   height: 80.0%;
+        padding-left: 0;
+        color: blue;
+    }
 
     </style>
 
@@ -85,7 +95,7 @@
     <div class = "top-left">   <h1>{{name_tytle}}</h1> </div>
     <div class = "bottom-left">   <p style = "color:white">
         {{name_authors}} {{ num_authors }} &nbsp;&nbsp;&nbsp; {{ name_poems }} {{ num_poems }}</p> </div>
-    <div class="top-right"> <h5> <b> {{ name_library }} </b> </h5> </div>
+    <div class="side_right_author"> <h5> <b> {{ name_library }} </b> </h5> </div>
     <div class = "bottom-right"> <p style = "color:darkblue; font-size: 12px; font-style: italic">
         {{ name_poem_list }} </p> </div>
 </div>  <!--  image_top  -->

@@ -47,8 +47,8 @@
         overflow: auto;
         border: 0px solid black;
         position: absolute;
-        left:0.0%;       top:12.0%;
-        width: 100.0%;   height: 88.0%;
+        left:-3.5%;       top:12.0%;
+        width: 103.5%;   height: 88.0%;
         padding-left: 0px;
 
     }
@@ -75,20 +75,52 @@
 
 <div class="top-left">
           <h2 style = "color:rgb(31, 81, 255)">
-              &nbsp;&nbsp;Фотоархів фонових зображень</h2>
+              &nbsp;&nbsp;&nbsp;Архів фонових зображень, {{num_image}} фото</h2>
 </div>  <!-- top-left -->
 
 <div class="image_genre_list">
 
+<ol>
+    <img src="{% static 'images/index_from_Bakla.png' %}" alt="From Bakla"
+     style="width:100%;height:37.2%;"/>
+    <li style = "color:rgb(31, 81, 255); font-size: 12px; font-style: italic;">
+          <b>долини навколо Бакли</b> </li>
+      <p>&nbsp;</p>
+
+    <img src="{% static 'images/books_from Bakla.png' %}" alt="Bakla morning"
+         style="width:100.0%;height:100.0%;"/>
+    <li style = "color:rgb(31, 81, 255); font-size: 12px; font-style: italic;">
+          <b>ранок на Баклі</b> </li>
+      <p>&nbsp;</p>
+
+    <img src="{% static 'images/genre_from_Chufut.png' %}" alt="From Chufut"
+         style="width:100.0%;height:100.0%;"/>
+    <li style = "color:rgb(31, 81, 255); font-size: 12px; font-style: italic;">
+          <b>плато Бурунчак</b> </li>
+      <p>&nbsp;</p>
+
+    <img src="{% static 'images/poems_from_Tepe.png' %}" alt="From Tepe"
+        style="width:100%;height:100%"/>
+     <li style = "color:rgb(31, 81, 255); font-size: 12px; font-style: italic;">
+          <b>гори з Тепе-Кермену</b> </li>
+      <p>&nbsp;</p>
+
+    <img src="{% static 'images/authors_from Bakla.png' %}" alt="Bakla Chatyrdag"
+         style="width:100.0%;height:100.0%;"/>
+    <li style = "color:rgb(31, 81, 255); font-size: 12px; font-style: italic;">
+          <b>гора Чатир-Даг</b> </li>
+      <p>&nbsp;</p>
+
     {% for image in genre_image_list %}
-    <p>&nbsp;</p>
 
    <img src="{% static image.image_genre %}" alt={{image.name}}
          style="width:100%;height:47.0%;"/>
-    <h5 style = "color:rgb(31, 81, 255); font-size: 12px; font-style: italic;">
-           &nbsp;&nbsp;<b>{{ image.image_name }}</b> </h5>
+    <li style = "color:rgb(31, 81, 255); font-size: 12px; font-style: italic;">
+          <b>{{ image.image_name }}</b> </li>
+      <p>&nbsp;</p>
 
     {% endfor %}
+</ol>
 
 </div> <!-- image_genre_list -->
 

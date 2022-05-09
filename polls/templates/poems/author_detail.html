@@ -7,6 +7,12 @@
 
     <style>
 
+    .bottom-left {
+        position: absolute;
+        top: 0.0%;
+        left: 20px;
+        }
+
     .author_name {
         border: 0px solid red;
         display: inline-block;
@@ -41,6 +47,9 @@
 
 
 {% block poem_author %}
+
+<div class = "bottom-left">   <p style = "color:white">
+        {{name_authors}} {{ num_authors }} &nbsp;&nbsp;&nbsp; {{ name_poems }} {{ num_poems }}</p> </div>
 
 <div class="author_name">
         <h4 style = "color:white">

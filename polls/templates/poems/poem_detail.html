@@ -51,7 +51,7 @@
 <div class="poem_tytle">
   <h3>&nbsp;&nbsp;{{ poem.tytle }}</h3>
 <div class = "poem_text"> <!-- Блок текста стихотворения  -->
-   <pre style="font-family:Georgia,serif; font-size: 14px">{{ poem.content }}</pre>
+   <pre style="font-family:Georgia,serif; font-size: 16px">{{ poem.content }}</pre>
 </div> <!-- poem_text -->
 </div> <!-- poem_tytle -->
 
@@ -67,15 +67,15 @@
 
   <p  style="white-space: pre-line; font-size: 13px" >{{ poem.summary }}</p>
     <br> <br>
-  <h5>{% if poem.genre.all.count > 1 %} Genres of the poem:
-      {% else %} Genre of the poem: {% endif %}  </h5>
+  <h5>{% if poem.genre.all.count > 1 %} Жанри вірша:
+      {% else %} Жанр вірша: {% endif %}  </h5>
   {% for genre in poem.genre.all %}
   <a href="{{ genre.get_absolute_url }}"> <b> {{ genre.name }} </b></a>
       <br>
   {% endfor %}
 
-  <h5>{% if poem.book.all.count > 1 %} Books of the poem:
-      {% else %} Book of the poem: {% endif %}  </h5>
+  <h5>{% if poem.book.all.count > 1 %} Книги вірша:
+      {% else %} Книга вірша: {% endif %}  </h5>
   {% for book in poem.book.all %}
   <a href="{{ book.get_absolute_url }}"> <b> {{ book.title }} </b></a>
       <br>
