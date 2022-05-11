@@ -50,8 +50,8 @@ class Genre(models.Model):
         ordering = ["name"]
     name = models.CharField(max_length=30,
                             help_text="Enter a book genre (e.g. Бог, Війна, Любов etc.)")
-    image_genre = models.CharField(max_length=200, default="")
-    image_name = models.CharField(max_length=200, default="", null = True , blank = True)
+    image_genre = models.CharField(max_length=100, null = True, blank = True)
+    image_name = models.CharField(max_length=100, null = True, blank = True)
     genre_text_color = models.CharField(max_length=30, default = 'bwbw')
 
 

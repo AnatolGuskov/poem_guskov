@@ -26,7 +26,7 @@ def index(request):
 
     # Number of visits to this view, as counted in the session variable.
     num_visits = request.session.get('num_visits', 0)
-    request.session['num_visits'] = num_visits - 1
+    request.session['num_visits'] = num_visits + 1
 
     name_tytle = "Бібліотека поезій Анатолія Гуськова"
     name_text = "Поетична бібліотека містить:"
@@ -115,14 +115,29 @@ def genre_detail(request, pk):
 
 #==================== genre_image_lst ===========
 def genre_image_list(request):
+
     genre_image_list = Genre.objects.all().order_by('image_name')
-    num_image = Genre.objects.all().count() + 5
+
+    image_list = \
+        [{"image_genre": "images/authors_from Bakla.png", "image_name": "гора Чатир-Даг"},
+         {"image_genre": "images/poems_from_Tepe.png", "image_name": "гори з Тепе-Кермену"},
+         {"image_genre": "images/genre_from_Chufut.png", "image_name": "плато Бурунчак"},
+         {"image_genre": "images/books_from Bakla.png", "image_name": "ранок на Баклі"},
+         {"image_genre": "images/index_from_Bakla.png", "image_name": "долини навколо Бакли"},
+         ]
+    for i in range (len(genre_image_list)):
+        image_list.append({"image_genre": genre_image_list[i].image_genre,
+                           "image_name": genre_image_list[i].image_name})
+
+    # image_list.sort("image_name")
+    num_image = len(image_list)
 
     return render(
         request,
         'poems/genre_image_list.html',
-        context={'genre_image_list': genre_image_list,
+        context={'image_list': image_list,
                  'num_image': num_image,
+
                   }
     )
 
@@ -279,7 +294,19 @@ def poem_list_string_rus(request):
                  }
     )
 
+# ================================ poem_collage ==================
+def poem_collage (request, pk):
+    collage = Poem.objects.get(pk=pk)
+    pos_image = collage.image_poem[18]
 
+    return render(
+        request,
+        'poems/poem_collage.html',
+        context={'collage': collage,
+                 'pos_image': pos_image,
+
+                 }
+    )
 
 
 # =============== Обобщенные представление (архив) ================

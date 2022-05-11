@@ -2,23 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Poem Detail</title>
+    <title>Poem Collage</title>
 
     <style>
     .poem_tytle {
-        background: rgb(210, 250, 240);
+        background: rgb(207, 195, 87);
         position: absolute;
         left:0px;       top:00px;
         width: 65%;     height: 100%;
         padding-left: 10px; padding-right: 10px;
     }
-    .poem_text {
+    .collage {
         overflow: auto;
         background: rgb(210, 250, 240);
-           left:0px;       top:8.0%;
-           width: 100%;    height: 86.0%;
+           left:0px;       top:0.0%;
+           width: 65%;    height: 100.0%;
         padding-left: 5px; padding-right: 0px;
         padding-top: 5px;
+        text-align: center;
     }
     .poem_detail {
         background: rgb(207, 195, 10);
@@ -49,46 +50,49 @@
 
 {% block content %}
 
-<div class="poem_tytle">
-    {% block poem %}
-  <h3>&nbsp;&nbsp;{{ poem.tytle }}</h3>
-<div class = "poem_text"> <!-- Блок текста стихотворения  -->
-   <pre style="font-family:Georgia,serif; font-size: 16px">{{ poem.content }}</pre>
-</div> <!-- poem_text -->
-    {% endblock %}
+<div class="collage">
+    {% if pos_image == 'v' %}
+        <img src="{% static collage.image_poem %}" alt={{collage.tytle}}
+             style="width: auto; height: 100.0%"/>
+    {% else %}
+        <img src="{% static collage.image_poem %}" alt={{collage.tytle}}
+             style="width: 100%; height: auto"/>
+    {% endif %}
+
 </div> <!-- poem_tytle -->
 
 
 <div class = "poem_detail"> <!-- Блок информации о стихотворении  -->
     {% block poem_detail %}
-  <p1 style="font-size: 10">{{ poem.date }}</p1>
+  <p1 style="font-size: 10">{{ collage.date }}</p1>
 
-  {% if poem.author.last_name == "Гуськов" %}
-  <h5> <b>{{poem.author.last_name}} {{poem.author.first_name}}</b> </h5>
+  {% if collage.author.last_name == "Гуськов" %}
+  <h5> <b>{{collage.author.last_name}} {{collage.author.first_name}}</b> </h5>
   {% else %}
-  <h5> <a href="{% url 'poems:author-detail' poem.author.pk %}">
-      <b>{{poem.author.last_name}} {{poem.author.first_name}}</b> </a> </h5>
+  <h5> <a href="{% url 'poems:author-detail' collage.author.pk %}">
+      <b>{{collage.author.last_name}} {{collage.author.first_name}}</b> </a> </h5>
   {% endif %}
 
-  <p  style="white-space: pre-line; font-size: 13px" >{{ poem.summary }}</p>
+  <p  style="white-space: pre-line; font-size: 13px" >{{ collage.summary }}</p>
     <br> <br>
-  <h5>{% if poem.genre.all.count > 1 %} Жанри вірша:
+  <h5>{% if collage.genre.all.count > 1 %} Жанри вірша:
       {% else %} Жанр вірша: {% endif %}  </h5>
-  {% for genre in poem.genre.all %}
+  {% for genre in collage.genre.all %}
   <a href="{{ genre.get_absolute_url }}"> <b> {{ genre.name }} </b></a>
       <br>
   {% endfor %}
 
-  <h5>{% if poem.book.all.count > 1 %} Книги вірша:
+  <h5>{% if collage.book.all.count > 1 %} Книги вірша:
       {% else %} Книга вірша: {% endif %}  </h5>
-  {% for book in poem.book.all %}
+  {% for book in collage.book.all %}
     <a href="{{ book.get_absolute_url }}"> <b> {{ book.title }} </b></a>
       <br>
   {% endfor %}
       <br>
-  {% if poem.image_poem %}
-    <a href="{% url 'poems:poem-collage' poem.id %}"> <b> Колаж вірша </b></a>
-  {% endif %}
+
+    <a href="{% url 'poems:poem-detail' collage.id %}"> <b> Текст вірша </b></a>
+
+
       <br>
       <br>
 

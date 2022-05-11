@@ -40,6 +40,7 @@ urlpatterns = [
     path('poems/str/rus', views.poem_list_string_rus, name='poem_string_rus'),
 
     path('poems/<pk>', views.PoemDetailView.as_view(), name='poem-detail'),
+    path('poems/collage/<pk>', views.poem_collage, name='poem-collage'),
 
 ]
 
