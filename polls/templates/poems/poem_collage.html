@@ -75,6 +75,8 @@
 
 <div class = "poem_detail"> <!-- Блок информации о стихотворении  -->
     {% block poem_detail %}
+  <h3 style="left: -10.0%">&nbsp;&nbsp;{{ collage.tytle }}</h3>
+
   <p1 style="font-size: 10">{{ collage.date }}</p1>
 
   {% if collage.author.last_name == "Гуськов" %}

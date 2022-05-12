@@ -13,7 +13,7 @@ def author (request):
            'genre_list': Genre.objects.all(),
            'book_list': Book.objects.all(),
            'last_poem_list': Poem.objects.all().filter(author_id=1).order_by('-date')[:7],
-           'symbol_collage': "#9829",
+           'symbol_collage': "#9830",
 
            }
 
