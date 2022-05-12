@@ -23,6 +23,7 @@ def index(request):
     num_poems_guskov = Poem.objects.all().filter(author = 1).count()
     num_authors = Author.objects.all().count() + 1
     num_poems_authors = Poem.objects.all().count() - num_poems_guskov
+    num_collage = Poem.objects.filter(image_poem__contains = "collage").count()
 
     # Number of visits to this view, as counted in the session variable.
     num_visits = request.session.get('num_visits', 0)
@@ -35,6 +36,8 @@ def index(request):
     name_poems_guskov = "Віршів А. Гуськова"
     name_authors = "Інших авторів"
     name_poems_authors = "Віршів інших авторів"
+    name_collage = "Віршів з колажами"
+
     # Отрисовка HTML-шаблона index.html с данными
     # внутри переменной контекста context
     return render(
@@ -45,7 +48,9 @@ def index(request):
                  'num_books': num_books, 'num_visits': num_visits,
                  'name_tytle': name_tytle, 'name_text': name_text, 'name_authors': name_authors,
                  'name_book': name_book, 'name_genre': name_genre,
-                 'name_poems_guskov': name_poems_guskov, 'name_poems_authors': name_poems_authors}
+                 'name_poems_guskov': name_poems_guskov, 'name_poems_authors': name_poems_authors,
+                 'name_collage': name_collage, 'num_collage': num_collage,
+                }
     )
 
 # =======================  AUTHOR LIST UKR ================
@@ -295,7 +300,9 @@ def poem_list_string_rus(request):
     )
 
 # ================================ poem_collage ==================
-def poem_collage (request, pk):
+def collage_poem (request, pk):
+    collage_list = Poem.objects.filter(image_poem__contains = "collage")
+
     collage = Poem.objects.get(pk=pk)
     pos_image = collage.image_poem[18]
 
@@ -304,10 +311,30 @@ def poem_collage (request, pk):
         'poems/poem_collage.html',
         context={'collage': collage,
                  'pos_image': pos_image,
+                 'collage_list': collage_list,
 
                  }
     )
 
+# ================================ collage+_list ==================
+def collage_list (request):
+    collage_list = Poem.objects.filter(image_poem__contains = "collage")
+
+
+    name_tytle_collage = "Вірші з колажами"
+    name_library = "Бібліотека поезій Анатолія Гуськова"
+    name_num = "Усього колажів"
+
+
+
+    return render(
+        request,
+        'poems/collage_list.html',
+        context={'collage_list': collage_list,
+                 'name_tytle_collage': name_tytle_collage,
+                 'name_library': name_library, 'name_num': name_num,
+                 }
+    )
 
 # =============== Обобщенные представление (архив) ================
 class GenreListView(generic.ListView):

@@ -99,10 +99,16 @@
     <td align="right"> {{ num_poems_authors }} </td>
 </tr>
 
+    <tr>
+    <td style="width:150px"> <li><strong>{{name_collage}}<b style= "color: red">&{{symbol_collage}}</b>:</strong></li> </td>
+    <td align="right"> {{ num_collage }} </td>
+
+</tr>
+
 </table>
 
 
-<br><br><br>
+<br><br>
   <p style = "font-size: 11px">You have visited this page {{ num_visits }}
         {% if num_visits == 1 %} time{% else %} times{% endif %}.</p>
 

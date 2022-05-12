@@ -5,13 +5,13 @@
     <title>Poem Collage</title>
 
     <style>
-    .poem_tytle {
-        background: rgb(207, 195, 87);
-        position: absolute;
-        left:0px;       top:00px;
-        width: 65%;     height: 100%;
-        padding-left: 10px; padding-right: 10px;
-    }
+<!--    .poem_tytle {-->
+<!--        background: rgb(207, 195, 87);-->
+<!--        position: absolute;-->
+<!--        left:0px;       top:00px;-->
+<!--        width: 65%;     height: 100%;-->
+<!--        padding-left: 10px; padding-right: 10px;-->
+<!--    }-->
     .collage {
         overflow: auto;
         background: rgb(210, 250, 240);
@@ -28,6 +28,17 @@
         width: 34%;     height:;
         padding-left: 10px; padding-right: 5px;
         padding-top: 15px;
+    }
+
+     .side_right_collage {
+        background: none;
+        border: 0px solid black;
+        overflow: auto;
+        position: absolute;
+        left:103%;       top:0px;
+        width: 20%;   height: 80.0%;
+        padding-left: 0;
+        color: blue;
     }
 
     p1 {
@@ -99,6 +110,17 @@
     {% endblock %}
 
 </div>   <!-- poem_detail -->
+
+     <div class="side_right_collage">
+         <h5 style ="color: blue;"><b>Колажі віршів</b></h5>
+
+{% for poem in collage_list %}
+
+   <a href="{% url 'poems:poem-collage' poem.id %}"> <b style = "font-size: 12px"> {{ poem.tytle }} </b></a><br>
+
+{% endfor %}
+     </div> <!-- side_right_collage -->
+
 
 
 {% endblock %}

@@ -111,7 +111,11 @@
      <td style="width:61.0%; color: blue; font-style: italic">
          <a href="{{ poem.get_absolute_url }}"> <b>{{ poem.headline }}&nbsp;...</b> </a></td>
      <td style="width:8.0%; align:right; font-style: italic"> {{ poem.poem_lang }} </td>
-     <td style="align:left"> {{ poem.tytle }} </td>
+     <td style="align:left"> {{ poem.tytle }}
+                          {% if poem.image_poem %}
+         <b style= "color: red">&{{symbol_collage}}</b>
+                          {% endif %}
+         </td>
 
 </tr>
 </table>
