@@ -100,7 +100,7 @@ def genre_detail(request, pk):
 
     genre_id = Genre.objects.get(pk=pk)
     name_tytle = "Перелік жанрів"
-    name_text = "Усьго жанрів:"
+    name_genre_text = "У цьому жанрі віршів:"
     name_poem = "віршів:"
     name_library = "Бібліотека поезій Анатолія Гуськова"
     color1 = genre_id.genre_text_color[0]
@@ -112,7 +112,7 @@ def genre_detail(request, pk):
         request,
         'poems/genre_detail.html',
         context={'genre': genre_id,
-                 'name_tytle': name_tytle, 'name_text': name_text,
+                 'name_tytle': name_tytle, 'name_genre_text': name_genre_text,
                  'name_poem': name_poem, 'name_library': name_library,
                  'color1': color1, 'color2': color2, 'color3': color3, 'color4': color4,
                  }
