@@ -129,6 +129,7 @@ def genre_image_list(request):
          {"image_genre": "images/genre_from_Chufut.png", "image_name": "плато Бурунчак"},
          {"image_genre": "images/books_from Bakla.png", "image_name": "ранок на Баклі"},
          {"image_genre": "images/index_from_Bakla.png", "image_name": "долини навколо Бакли"},
+         {"image_genre": "images/collage_from_Kacha.png", "image_name": "долина Качі, скала Фицкі"},
          ]
     for i in range (len(genre_image_list)):
         image_list.append({"image_genre": genre_image_list[i].image_genre,
@@ -321,7 +322,7 @@ def collage_list (request):
     collage_list = Poem.objects.filter(image_poem__contains = "collage")
 
 
-    name_tytle_collage = "Вірші з колажами"
+    name_tytle_collage = "Колажі віршів"
     name_library = "Бібліотека поезій Анатолія Гуськова"
     name_num = "Усього колажів"
 

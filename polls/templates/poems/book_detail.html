@@ -17,29 +17,41 @@
     }
 
     .book_detail {
-        background: rgb(207, 195, 87);
-        position: absolute;    left:0px;       top:00px;
-                               width: 66%;   height:50.0%;
+        overflow: auto;
+        border-radius: 10px;
+        background: rgb(210, 220, 240);
+        position: absolute;    left:34.0%;       top:00px;
+                               width: 65%;   height:50.0%;
         padding-left: 10px; padding-right: 20px; padding-bottom: 0px;
         color:rgb(56, 45, 56); font-size: 10; text-decoration: greenyellow;
 <!--        white-space: pre-line; font-size: 12px;-->
     }
 
     .book_image {
-    background: rgb(207, 195, 187);
-    position: absolute;    left:68%;       top:00px;
-                           width: 32.0%;   height:50.0%;
-    padding-left: 0px; padding-right: 0px;
-    color:rgb(56, 45, 56); font-size: 20; text-decoration: greenyellow;
+        border-radius: 10px;
+        background: rgb(210, 220, 240);
+        position: absolute;    left:1%;       top:00px;
+                               width: 32.0%;   height:50.0%;
+        padding-left: 0px; padding-right: 0px;
+        color:rgb(56, 45, 56); font-size: 20; text-decoration: greenyellow;
+
     }
 
     .book_poems {
         overflow: auto;
-        background: rgb(207, 195, 10);
-        position: absolute;    left:0px;      top:52.0%;
-                               width: 100%;     height: 48.0%;
-        padding-left: 20px; padding-right: 20px; padding-top: 0px;
+        border-radius: 10px;
+        background: rgb(210, 220, 240);
+        position: absolute;    left:1.0%;      top:52.0%;
+                               width: 98%;     height: 48.0%;
+        padding-left: 20px; padding-right: 20px; padding-top: 5px;
         color:rgb(56, 45, 56); font-size: 20; text-decoration: greenyellow;
+
+        -webkit-column-width: 50.0%;  /* Chrom  Safari  */
+        -moz-column-width: 50.0%;     /* FireFox  */
+        column-width: 50.0%;
+        -webkit-column-count: 2; -moz-column-count: 2;  column-count: 2;
+        -webkit-column-gap: 0%;  -moz-column-gap: 0%;   column-gap: 0%;
+        -webkit-column-rule: 1px solid #ccc; -moz-column-rule: 1px solid #ccc; column-rule: 1px solid #ccc;
     }
 
     .side_right_book {
@@ -69,28 +81,28 @@
       <h3 style="line-height: 0.5">{{ book.title }}</h3>
 <table style="width: 100%; height:70%">
 <tr>
-      <td style="width: 20.0%"><p1><strong>ISBN:</strong></p1> </td>
+      <td style="width: 23.0%"><p1><strong>ISBN:</strong></p1> </td>
       <td><p1>{% if book.Isbn != "ISBN" %} {{ book.isbn }} {% endif %}</p1> </td>
 </tr>
 <tr>
-      <td style="width: 20.0%"><p1><strong>Public date:</strong></p1> </td>
+      <td style="width: 23.0%"><p1><strong>Дата видання:</strong></p1> </td>
       <td><p1>{% if book.public_date %} {{ book.public_date }} {% endif %}</p1> </td>
 </tr>
 <tr>
-      <td> <p1><strong>Author:</strong></p1> </td>
+      <td> <p1><strong>Автор:</strong></p1> </td>
       <td><p1>{{ book.author }} {% if book.author_status %} - {{ book.author_status }} {% endif %} </p1> </td>
 </tr>
 <tr>
-      <td ><p1 ><strong>Summary:</strong><p> </td>
+      <td ><p1 ><strong>Анотація:</strong><p> </td>
       <td><p1 style="white-space: pre-line; font-size: 12px"> {{ book.summary }}</p1>  </td>
 </tr>
 <tr>
-      <td><p1><strong>Pages:</strong><p> </td>
+      <td><p1><strong>Сторінок:</strong><p> </td>
       <td><p1>{{ book.pages }}</p1> </td>
 </tr>
 <tr>
-      <td><p1><strong>Poems:</strong></p1> </td>
-      <td><p1><b>{{ book.poem_set.all.count }}</b> from {{ book.poems_count }}</p1>  </td>
+      <td><p1><strong>Віршів:</strong></p1> </td>
+      <td><p1><b>{{ book.poem_set.all.count }}</b> </p1>  </td>
 </tr>
 </table>
 
@@ -99,14 +111,17 @@
   <div class="book_image">  <!-- Блок обложки книги -->
 
       <img src="{% static book.image_book %}" alt="{{ book.name_book }}"
-                     style="width:100.0%;height:100%;"/>
+                     style="width:100.0%; height:100%; border-radius: 10px;"/>
 
   </div>  <!-- Конец Блок обложки книги -->
 
   <div class="book_poems"> <!-- Блок перечня стихотворений книги -->
 {% for poem in book.poem_set.all %}
-   <b>*</b><a href="{{ poem.get_absolute_url }}"> <b> {{ poem.tytle }} </b></a>
-      <b> &nbsp;&nbsp;&nbsp;&nbsp; </b>
+ <a href="{{ poem.get_absolute_url }}"> <b> {{ poem.tytle }} </b></a>
+      {% if poem.image_poem %}
+         <b style= "color: red">&{{symbol_collage}}</b>
+                     {% endif %}<br>
+
 {% endfor %}
    <br> <br>
   </div> <!-- Конец Блок перечня стихотворений книги -->

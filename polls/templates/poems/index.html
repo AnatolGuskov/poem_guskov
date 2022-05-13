@@ -48,6 +48,13 @@
         color: blue;
     }
 
+    .name_image {
+        position: absolute;
+        left: 60.0%;     top: 32.0%;
+        width: 37.0%;
+        font-size: 12px; font-style: italic; text-align: right;
+        color: white;
+    }
 
         </style>
     <meta charset="UTF-8">
@@ -63,6 +70,7 @@
 {% block content %}
 <img src="{% static 'images/index_from_Bakla.png' %}" alt="From Bakla"
      style="width:100%;height:37.2%;"/>
+<div class="name_image"> <p>долини навколо Бакли</p> </div>
 
 <h1 class="tytle"> {{name_tytle}} </h1>
 
@@ -124,7 +132,7 @@
                 Тематична збірка професійних і аматорських віршів, присвячених російсько-українській війні</td>
         <td style="width: 49.0%; ">
                  <img src="{% static 'images/books/2022_war.jpg' %}" alt="book_war"
-                     style="width:100.0%;height:100%;"/>
+                     style="width:100.0%; height:100%; radius-border: 10px"/>
         </td>
 
     </table>

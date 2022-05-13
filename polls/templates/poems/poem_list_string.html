@@ -6,14 +6,10 @@
     <title>Poem List</title>
 
     <style>
-    table, th, td {
+            table, th, td {
           border: 0px solid black;
           vertical-align: top;
-     }
-
-     .italic {
-           font-style: italic;
-     }
+        }
 
     .image_top {
         background: none;
@@ -30,8 +26,8 @@
         position: absolute;
         left:0.0%;       top:39.0%;
         width: 100%;   height: 61.0%;
-    padding-left: 5px; padding-right: 5px;
-    color:black;
+        padding-left: 5px; padding-right: 5px;
+        color:black;
     }
 
     .top-left {
@@ -43,7 +39,7 @@
 
     .top-right {
         position: absolute;
-        left: 75.0%;     top: 7.0%;
+        left: 102.5%;     top: 7.0%;
         width: 24.0%;
         color: darkblue;
     }
@@ -58,16 +54,25 @@
     .bottom-right {
         position: absolute;
         top: 74.0%;
-        left: 75%;
+        left: 102.5%;
+        width: 24.0%;
         color: blue
+    }
+
+    .name_image {
+        position: absolute;
+        left: 60.0%;     top: 85.0%;
+        width: 37.0%;
+        font-size: 12px; font-style: italic; text-align: right;
+        color: white;
     }
 
     a.button {
           display: inline-block;
-          background: #2000f3;
-          color: #fff;
+          background: RoyalBlue;
+          color: white;
           padding: 1px;
-          border-radius: 3px;
+          border-radius: 4px;
           text-decoration: none;
           font-family: Tahoma;
           font-size: 11px;
@@ -91,10 +96,12 @@
     <div class = "top-left"><h1> {{ name_tytle_poem }} </h1> </div>
     <div class="bottom-left"> <p>{{ name_num }}: {{ num }} </p> </div>
     <div class="top-right"> <h5> <b> {{ name_library }} </b> </h5> </div>
+    <div class="name_image"> <p>гори з Тепе-Кермену</p> </div>
+
     <div class="bottom-right">
-        <a class="button" style="color: DarkGray" href="{% url 'poems:poem_string_ukr' %}">
+        <a class="button" href="{% url 'poems:poem_string_ukr' %}">
             &nbsp;Вірші українською&nbsp;</a> <br>
-        <a class="button" style="color: DarkGray"href="{% url 'poems:poem_string_rus' %}">
+        <a class="button" href="{% url 'poems:poem_string_rus' %}">
             &nbsp;Вірші російською&nbsp;&nbsp;&nbsp;</a>
     </div>
 

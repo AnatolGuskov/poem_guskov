@@ -35,7 +35,7 @@
 
     .top-right {
         position: absolute;
-         left: 75.0%;     top: 7.0%;
+         left: 102.5%;     top: 7.0%;
          width: 24.0%;
          color: darkblue;
     }
@@ -57,17 +57,13 @@
                            width: 80.0%px;   height:55px;
     }
 
-<!--    a:link {-->
-<!--          color: red;-->
-<!--          background-color: transparent;-->
-<!--          text-decoration: none;-->
-<!--    }-->
-
-<!--        a:hover {-->
-<!--          color: red;-->
-<!--          background-color: transparent;-->
-<!--          text-decoration: underline;-->
-<!--        }-->
+    .name_image {
+        position: absolute;
+        left: 60.0%;     top: 85.0%;
+        width: 37.0%;
+        font-size: 12px; font-style: italic; text-align: right;
+        color: white;
+    }
 
     </style>
 
@@ -87,6 +83,7 @@
     <div class = "bottom-left">   <p style = "color:white">
         {{name_text}} {{ book_list.all.count }} </p> </div>
     <div class="top-right"> <h5> <b> {{ name_library }} </b> </h5> </div>
+    <div class="name_image"> <p>ранок на Баклі</p> </div>
 
 </div>  <!--  image_top  -->
 

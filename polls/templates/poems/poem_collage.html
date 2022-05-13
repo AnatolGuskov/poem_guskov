@@ -21,11 +21,14 @@
         padding-top: 5px;
         text-align: center;
     }
+
     .poem_detail {
-        background: rgb(207, 195, 10);
+        border:0px solid blue;
+        border-radius: 10px;
+        background: rgb(210, 220, 240);
         position: absolute;
-        left:66%;       top:00px;
-        width: 34%;     height:;
+        left:65%;       top:2px;
+        width: 33%;     height:;
         padding-left: 10px; padding-right: 5px;
         padding-top: 15px;
     }
@@ -64,10 +67,10 @@
 <div class="collage">
     {% if pos_image == 'v' %}
         <img src="{% static collage.image_poem %}" alt={{collage.tytle}}
-             style="width: auto; height: 100.0%"/>
+             style="width: auto; height: 99.0%; border-radius: 10px"/>
     {% else %}
         <img src="{% static collage.image_poem %}" alt={{collage.tytle}}
-             style="width: 100%; height: auto"/>
+             style="width: 99%; height: auto; border-radius: 10px"/>
     {% endif %}
 
 </div> <!-- poem_tytle -->
@@ -75,7 +78,7 @@
 
 <div class = "poem_detail"> <!-- Блок информации о стихотворении  -->
     {% block poem_detail %}
-  <h3 style="left: -10.0%">&nbsp;&nbsp;{{ collage.tytle }}</h3>
+  <p style="font-size: 20px">{{ collage.tytle }}</p>
 
   <p1 style="font-size: 10">{{ collage.date }}</p1>
 
