@@ -120,13 +120,30 @@
 
 
 <div class="side_right_poem">
-         <p style = "font-size: 11px"> {{list_art}} </p>
+         <p style = "font-size: 12px"> {{list_art}} </p>
          <h5><b> {{list_name}} </b></h5>
 {% for poem in poem_list %}
+    {% if art == "book" %}
    <li>
    <a href="{% url 'poems:poem-book' poem.id art_id %}">
        <b style = "line-height: 0.5; font-size: 12px"> {{ poem.tytle }}</b></a><br>
    </li>
+    {% endif %}
+
+    {% if art == "genre" %}
+   <li>
+   <a href="{% url 'poems:poem-genre' poem.id art_id %}">
+       <b style = "line-height: 0.5; font-size: 12px"> {{ poem.tytle }}</b></a><br>
+   </li>
+    {% endif %}
+
+    {% if art == "lang" %}
+   <li>
+   <a href="{% url 'poems:poem-lang' poem.id art_id %}">
+       <b style = "line-height: 0.5; font-size: 12px"> {{ poem.tytle }}</b></a><br>
+   </li>
+    {% endif %}
+
 {% endfor %}
 </div> <!-- side_right_poem -->
 

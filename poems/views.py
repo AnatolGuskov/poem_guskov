@@ -384,6 +384,7 @@ def poem_detail_book (request, poem_pk, book_id):
                  'list_art': "вірші із книги",
                  'list_name': book.title,
                  'art_id': book_id,
+                 'art': "book",
                  }
     )
 
@@ -401,6 +402,7 @@ def poem_detail_genre (request, poem_pk, genre_id):
                  'list_art': "вірші із жанру",
                  'list_name': genre.name,
                  'art_id': genre_id,
+                 'art': "genre",
                  }
     )
 
@@ -420,6 +422,7 @@ def poem_detail_lang (request, poem_pk, lang):
                  'poem_list': poem_list,
                  'list_art': list_art,
                  'art_id': lang,
+                 'art': "lang"
                  }
     )
 

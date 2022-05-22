@@ -132,7 +132,7 @@
     <div class="poem_genre_list">
 {% for poem in genre.poem_set.all %}
 
-   <a href="{% url 'poems:poem-genre' poem.id genre.id %}"> <b> {{ poem.tytle }} {{genre.id}} </b></a>
+   <a href="{% url 'poems:poem-genre' poem.id genre.id %}"> <b> {{ poem.tytle }} </b></a>
         {% if poem.image_poem %}
          <b style= "color: red">&{{symbol_collage}}</b>
                      {% endif %}
