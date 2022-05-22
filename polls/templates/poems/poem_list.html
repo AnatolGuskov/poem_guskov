@@ -118,7 +118,7 @@
 <table style="width: 100.0%">
 <tr>
      <td style="width:7px"> <li> </li> </td>
-     <td style="width:35.0%"><a href="{{ poem.get_absolute_url }}"> <b> {{ poem.tytle }} </b> </a>
+     <td style="width:35.0%"><a href="{% url 'poems:poem-lang' poem.id poem.poem_lang %}"> <b> {{ poem.tytle }} </b> </a>
                      {% if poem.image_poem %}
          <b style= "color: red">&{{symbol_collage}}</b>
                      {% endif %}
@@ -140,7 +140,7 @@
 <table style="width: 100.0%">
 <tr>
      <td style="width:7px"> <li> </li> </td>
-     <td style="width:35.0%"><a href="{{ poem.get_absolute_url }}">  <b> {{ poem.tytle }} </b> </a> </td>
+     <td style="width:35.0%"><a href="{% url 'poems:poem-lang' poem.id poem.poem_lang %}">  <b> {{ poem.tytle }} </b> </a> </td>
      <td style="width:8.0%; align:right; font-style: italic"> {{ poem.poem_lang }} </td>
      <td style="align:left; font-style: italic"> {{ poem.headline }}&nbsp;... </td>
 </tr>

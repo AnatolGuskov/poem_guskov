@@ -46,6 +46,17 @@
         background-color: none;
         font-size: 12px
     }
+    .side_right_poem {
+        background: none;
+        border: 0px solid black;
+        overflow: auto;
+        position: absolute;
+        left:103%;       top:0px;
+        width: 20%;   height: 85.0%;
+        padding-left: 0;
+        color: blue;
+    }
+
 
     </style>
     {% extends "poems/base_generic.html" %}
@@ -98,6 +109,8 @@
     <a href="{% url 'poems:poem-collage' poem.id %}"> <b> Колаж вірша </b>
                            <b style= "color: red">&{{symbol_collage}};</b></a>
   {% endif %}
+    <p> {{ art }}</p>
+    <p> {{ name }}</p>
       <br>
       <br>
 
@@ -105,6 +118,17 @@
 
 </div>   <!-- poem_detail -->
 
+
+<div class="side_right_poem">
+         <p style = "font-size: 11px"> {{list_art}} </p>
+         <h5><b> {{list_name}} </b></h5>
+{% for poem in poem_list %}
+   <li>
+   <a href="{% url 'poems:poem-book' poem.id art_id %}">
+       <b style = "line-height: 0.5; font-size: 12px"> {{ poem.tytle }}</b></a><br>
+   </li>
+{% endfor %}
+</div> <!-- side_right_poem -->
 
 {% endblock %}
 

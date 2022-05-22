@@ -73,7 +73,7 @@
         overflow: auto;
         position: absolute;
         left:103%;       top:0px;
-        width: 20%;   height: 80.0%;
+        width: 20%;   height: 85.0%;
         padding-left: 0;
         color: blue;
     }
@@ -132,7 +132,7 @@
     <div class="poem_genre_list">
 {% for poem in genre.poem_set.all %}
 
-   <a href="{{ poem.get_absolute_url }}"> <b> {{ poem.tytle }} </b></a>
+   <a href="{% url 'poems:poem-genre' poem.id genre.id %}"> <b> {{ poem.tytle }} {{genre.id}} </b></a>
         {% if poem.image_poem %}
          <b style= "color: red">&{{symbol_collage}}</b>
                      {% endif %}

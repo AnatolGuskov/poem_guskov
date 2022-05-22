@@ -116,7 +116,7 @@
 <tr>
      <td style="width:6px"> <li> </li> </td>
      <td style="width:61.0%; color: blue; font-style: italic">
-         <a href="{{ poem.get_absolute_url }}"> <b>{{ poem.headline }}&nbsp;...</b> </a></td>
+         <a href="{% url 'poems:poem-lang' poem.id poem.poem_lang %}"> <b>{{ poem.headline }}&nbsp;...</b> </a></td>
      <td style="width:8.0%; align:right; font-style: italic"> {{ poem.poem_lang }} </td>
      <td style="align:left"> {{ poem.tytle }}
                           {% if poem.image_poem %}
@@ -137,7 +137,7 @@
 <tr>
      <td style="width:6px"> <li> </li> </td>
      <td style="width:61.0%; color: blue; font-style: italic">
-         <a href="{{ poem.get_absolute_url }}"> <b>{{ poem.headline }}&nbsp;...</b> </a></td>
+         <a href="{% url 'poems:poem-lang' poem.id poem.poem_lang %}"> <b>{{ poem.headline }}&nbsp;...</b> </a></td>
      <td style="width:8.0%; align:right; font-style: italic"> {{ poem.poem_lang }} </td>
      <td style="align:left"> {{ poem.tytle }} </td>
 

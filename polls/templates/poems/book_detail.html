@@ -106,7 +106,10 @@
       <td><p1><strong>Віршів:</strong></p1> </td>
       <td><p1><b>{{ book.poem_set.all.count }}</b> </p1>  </td>
 </tr>
+
 </table>
+
+<!--      <p>{{poem_context_art}}</p>-->
 
   </div>  <!-- Конец Блок деталей книги -->
 
@@ -119,10 +122,10 @@
 
   <div class="book_poems"> <!-- Блок перечня стихотворений книги -->
 {% for poem in book.poem_set.all %}
- <a href="{{ poem.get_absolute_url }}"> <b> {{ poem.tytle }} </b></a>
+ <a href="{% url 'poems:poem-book' poem.id book.id %}"> <b> {{ poem.tytle }} </b></a>
       {% if poem.image_poem %}
          <b style= "color: red">&{{symbol_collage}}</b>
-                     {% endif %}<br>
+                   {% endif %}<br>
 
 {% endfor %}
    <br> <br>

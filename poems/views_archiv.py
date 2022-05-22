@@ -12,6 +12,21 @@ from django.db.models import Q
 from . models import Author, Genre, Book, Poem
 # D:\\web\\dj\\mytestsite\\poems\\
 
+
+# ================================= poem_detail ==================
+def poem_detail (request, pk):
+    poem = Poem.objects.get(pk=pk)
+    book_poem = poem.author
+
+    return render(
+        request,
+        'poems/poem_detail.html',
+        context={'poem': poem, 'book_poem': book_poem,
+
+
+                 }
+    )
+
 # ================== INDEX MDN Web Docs part 5 ===========================
 def index_eng(request):
     # Функция отображения для домашней страницы сайта.

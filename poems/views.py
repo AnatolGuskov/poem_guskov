@@ -13,6 +13,12 @@ from . models import Author, Genre, Book, Poem
 # D:\\web\\dj\\mytestsite\\poems\\
 
 
+# ================================ poem_context ==================
+poem_context_art = "1"
+poem_context_name = "2"
+poem_context_list = []
+
+
 # ================== INDEX UKR MDN Web Docs part 5 ===========================
 def index(request):
     # Функция отображения для домашней страницы сайта.
@@ -95,6 +101,7 @@ def genre_list_ukr(request):
                  'name_tytle': name_tytle, 'name_text': name_text,
                  'name_poem': name_poem, 'name_library': name_library }
     )
+
 #======================================
 def genre_detail(request, pk):
 
@@ -147,9 +154,9 @@ def genre_image_list(request):
                   }
     )
 
-#================= BOOK =====================
-#=============== book_list_ukr
-def book_list_ukr(request):
+#================= BOOK Пользовательское представление =================
+#=============== book_list_ukr =======================
+def book_list(request):
     book_list = Book.objects.all().order_by("-public_date")
 
     name_tytle = "Перелік Книг"
@@ -167,7 +174,19 @@ def book_list_ukr(request):
                  'name_poem': name_poem}
     )
 
-# ============================= POEMS LIST TITLE ================
+#=============== book_detail_ukr =======================
+def book_detail (request, pk):
+    book = Book.objects.get(pk=pk)
+
+    return render(
+        request,
+        'poems/book_detail.html',
+        context={'book': book,
+
+                 }
+    )
+
+# ================ POEMS LIST TITLE =====================================
 def poem_list_all(request):
     poem_list = Poem.objects.all().filter(author_id = 1)
     poem_list_authors = Poem.objects.all().filter(~Q(author_id = 1))
@@ -189,6 +208,7 @@ def poem_list_all(request):
                  'name_library': name_library, 'name_num': name_num,
                  }
     )
+
 # =============================== poem_list_ukr
 def poem_list_ukr(request):
     poem_list = Poem.objects.all().filter(author_id=1, poem_lang = 'укр.')
@@ -211,6 +231,7 @@ def poem_list_ukr(request):
                  'name_library': name_library, 'name_num': name_num,
                  }
     )
+
 # =============================== poem_list_rus
 def poem_list_rus(request):
     poem_list = Poem.objects.all().filter(author_id=1, poem_lang='рос.')
@@ -233,6 +254,7 @@ def poem_list_rus(request):
                  'name_library': name_library, 'name_num': name_num,
                  }
     )
+
 # ============================== POEMS LIST STRING =====+++++==========
 def poem_list_string_all(request):
     poem_list = Poem.objects.all().filter(author_id=1).order_by("headline")
@@ -255,6 +277,7 @@ def poem_list_string_all(request):
                  'name_library': name_library, 'name_num': name_num,
                  }
     )
+
 # ================================ poem_list_string_ukr ===============
 def poem_list_string_ukr(request):
     poem_list = Poem.objects.all().filter(author_id=1, poem_lang = 'укр.').order_by("headline")
@@ -277,6 +300,7 @@ def poem_list_string_ukr(request):
                  'name_library': name_library, 'name_num': name_num,
                  }
     )
+
 # ================================ poem_list_string_rus ==================
 def poem_list_string_rus(request):
     poem_list = Poem.objects.all().filter(author_id=1, poem_lang='рос.').order_by("headline")
@@ -317,16 +341,13 @@ def collage_poem (request, pk):
                  }
     )
 
-# ================================ collage+_list ==================
+# ================================ collage_list ==================
 def collage_list (request):
     collage_list = Poem.objects.filter(image_poem__contains = "collage")
-
 
     name_tytle_collage = "Колажі віршів"
     name_library = "Бібліотека поезій Анатолія Гуськова"
     name_num = "Усього колажів"
-
-
 
     return render(
         request,
@@ -337,6 +358,75 @@ def collage_list (request):
                  }
     )
 
+# ================================= poem_detail ==================
+def poem_detail (request, pk):
+    poem = Poem.objects.get(pk=pk)
+
+    return render(
+        request,
+        'poems/poem_detail.html',
+        context={'poem': poem,
+
+                 }
+    )
+
+# ================================= poem_detail_book Вірші по книзі ==================
+def poem_detail_book (request, poem_pk, book_id):
+    poem = Poem.objects.get(pk=poem_pk)
+    poem_list = Poem.objects.all().filter(book = book_id)
+    book = Book.objects.get(id = book_id)
+
+    return render(
+        request,
+        'poems/poem_detail.html',
+        context={'poem': poem,
+                 'poem_list': poem_list,
+                 'list_art': "вірші із книги",
+                 'list_name': book.title,
+                 'art_id': book_id,
+                 }
+    )
+
+# ================================= poem_detail_genre Вірші по жанру ==================
+def poem_detail_genre (request, poem_pk, genre_id):
+    poem = Poem.objects.get(pk= poem_pk)
+    poem_list = Poem.objects.all().filter(genre = genre_id)
+    genre = Genre.objects.get(id = genre_id)
+
+    return render(
+        request,
+        'poems/poem_detail.html',
+        context={'poem': poem,
+                 'poem_list': poem_list,
+                 'list_art': "вірші із жанру",
+                 'list_name': genre.name,
+                 'art_id': genre_id,
+                 }
+    )
+
+# ================================= poem_detail_lang Вірші по мові ==================
+def poem_detail_lang (request, poem_pk, lang):
+    poem = Poem.objects.get(pk= poem_pk)
+    poem_list = Poem.objects.all().filter(poem_lang = lang)
+    if lang == 'укр.':
+        list_art = 'вірші українською'
+    else:
+        list_art = 'вірші російською'
+
+    return render(
+        request,
+        'poems/poem_detail.html',
+        context={'poem': poem,
+                 'poem_list': poem_list,
+                 'list_art': list_art,
+                 'art_id': lang,
+                 }
+    )
+
+
+
+
+
 # =============== Обобщенные представление (архив) ================
 class GenreListView(generic.ListView):
     model = Genre
@@ -346,16 +436,13 @@ class GenreDetailView(generic.DetailView):
 #======================================
 class BookListView(generic.ListView):
     model = Book
-
 # ===============================
 class BookDetailView(generic.DetailView):
     model = Book
     # context_object_name = 'my_books'
-
 # =================================
 class PoemListView(generic.ListView):
     model = Poem
-
 # ===============================
 class PoemDetailView(generic.DetailView):
     model = Poem
