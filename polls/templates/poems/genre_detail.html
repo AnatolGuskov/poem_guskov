@@ -67,13 +67,23 @@
         -webkit-column-rule: 1px solid #ccc;   -moz-column-rule: 1px solid #ccc;  column-rule: 1px solid #ccc;
     }
 
-    .side_right_genre {
+    .side_right_tytle {
         background: none;
         border: 0px solid black;
+        position: absolute;
+        left:102.5%;       top:1.0%;
+        width: 20.2%;   height: 7.0%;
+        padding-left: 0;
+        color: blue;
+    }
+
+    .side_right_genre {
+        background: none;
+        border: 0px solid white;
         overflow: auto;
         position: absolute;
-        left:103%;       top:0px;
-        width: 20%;   height: 85.0%;
+        left:102.5%;       top: 7.0%;
+        width: 20.5%;   height: 90.0%;
         padding-left: 0;
         color: blue;
     }
@@ -126,10 +136,9 @@
     </div>   <!-- bottom-right -->
     {% endif %}
 
-
 </div>  <!-- image_top -->
 
-    <div class="poem_genre_list">
+<div class="poem_genre_list">
 {% for poem in genre.poem_set.all %}
 
    <a href="{% url 'poems:poem-genre' poem.id genre.id %}"> <b> {{ poem.tytle }} </b></a>
@@ -139,16 +148,20 @@
         &nbsp;&nbsp;&nbsp;&nbsp;{{poem.poem_lang}} <br>
 
 {% endfor %}
-     </div> <!-- poem_genre_list -->
+</div> <!-- poem_genre_list -->
 
-     <div class="side_right_genre">
+<div class="side_right_tytle">
          <h5 style ="color: blue;"><b>Жанри віршів</b></h5>
+</div>  <!-- side_right_tytle  -->
+
+<div class="side_right_genre">
+
 {% for genre in genre_list %}
 
    <a href="{{ genre.get_absolute_url }}"> <b style = "font-size: 12px"> {{ genre.name }} </b></a><br>
 
 {% endfor %}
-     </div> <!-- side_right_genre -->
+</div> <!-- side_right_genre -->
 
 
 

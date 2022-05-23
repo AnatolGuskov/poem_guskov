@@ -46,13 +46,24 @@
         background-color: none;
         font-size: 12px
     }
-    .side_right_poem {
+
+    .side_right_tytle {
         background: none;
         border: 0px solid black;
+        position: absolute;
+        left:102.5%;       top:1.0%;
+        width: 20.2%;   height: 31.5%;
+        padding-left: 0;
+        color: blue;
+    }
+
+    .side_right_poem {
+        background: none;
+        border: 0px solid white;
         overflow: auto;
         position: absolute;
-        left:103%;       top:0px;
-        width: 20%;   height: 85.0%;
+        left:102.5%;       top: 32.0%;
+        width: 20.5%;   height: 67.0%;
         padding-left: 0;
         color: blue;
     }
@@ -109,8 +120,7 @@
     <a href="{% url 'poems:poem-collage' poem.id %}"> <b> Колаж вірша </b>
                            <b style= "color: red">&{{symbol_collage}};</b></a>
   {% endif %}
-    <p> {{ art }}</p>
-    <p> {{ name }}</p>
+
       <br>
       <br>
 
@@ -119,9 +129,23 @@
 </div>   <!-- poem_detail -->
 
 
+<div class="side_right_tytle">
+        {% if art_image %}
+<table style="width: 100.0%">
+<tr>
+<td> <img src="{% static art_image %}" alt="{{ book.name_book }}"
+          style="width:97.0%" /> </td>
+</tr>
+</table>
+        {% endif %}
+        {% if list_name %}
+            <p style = "font-size: 16px"> <b>{{list_name}}</b> </p>
+        {% endif %}
+
+
+</div>  <!-- side_right_tytle -->
+
 <div class="side_right_poem">
-         <p style = "font-size: 12px"> {{list_art}} </p>
-         <h5><b> {{list_name}} </b></h5>
 {% for poem in poem_list %}
     {% if art == "book" %}
    <li>

@@ -382,7 +382,8 @@ def poem_detail_book (request, poem_pk, book_id):
         context={'poem': poem,
                  'poem_list': poem_list,
                  'list_art': "вірші із книги",
-                 'list_name': book.title,
+                 # 'list_name': book.title,
+                 'art_image': book.image_book,
                  'art_id': book_id,
                  'art': "book",
                  }
@@ -401,6 +402,7 @@ def poem_detail_genre (request, poem_pk, genre_id):
                  'poem_list': poem_list,
                  'list_art': "вірші із жанру",
                  'list_name': genre.name,
+                 'art_image': genre.image_genre,
                  'art_id': genre_id,
                  'art': "genre",
                  }
@@ -411,16 +413,17 @@ def poem_detail_lang (request, poem_pk, lang):
     poem = Poem.objects.get(pk= poem_pk)
     poem_list = Poem.objects.all().filter(poem_lang = lang)
     if lang == 'укр.':
-        list_art = 'вірші українською'
+        list_name = 'вірші українською'
     else:
-        list_art = 'вірші російською'
+        list_name = 'вірші російською'
 
     return render(
         request,
         'poems/poem_detail.html',
         context={'poem': poem,
                  'poem_list': poem_list,
-                 'list_art': list_art,
+                 'list_name': list_name,
+                 'art_image': 'images/poems_from_Tepe.png',
                  'art_id': lang,
                  'art': "lang"
                  }
